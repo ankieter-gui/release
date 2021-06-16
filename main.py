@@ -63,7 +63,10 @@ def get_dashboard():
         })
     user_reports = database.get_user_reports(user)
     for report in user_reports:
-        survey = database.get_survey(report.SurveyId)
+        try:
+            survey = database.get_survey(report.SurveyId)
+        except:
+            continue
         author = database.get_user(report.AuthorId)
         result.append({
             'type': 'report',
@@ -472,9 +475,10 @@ def delete_group():
     }
 
 
-@app.route('/api/data/new', methods=['POST'])
+@app.route('/api/data/new', methods=['POST'], defaults={'survey_id': None})
+@app.route('/api/data/new/<int:survey_id>', methods=['POST'])
 @on_errors('could not save survey data')
-def upload_results():
+def upload_results(survey_id):
     if not request.files['file']:
         raise error.API("empty survey data")
 
@@ -486,7 +490,10 @@ def upload_results():
     if ext.lower() != 'csv':
         raise error.API("expected a CSV file")
 
-    survey = database.create_survey(database.get_user(), name)
+    if survey_id:
+        survey = database.get_survey(survey_id)
+    else:
+        survey = database.create_survey(database.get_user(), name)
 
     file.save(os.path.join(ABSOLUTE_DIR_PATH, "raw/", f"{survey.id}.csv"))
 
@@ -592,11 +599,12 @@ def get_static_file(path):
 @app.route('/surveysEditor/<path:text>')
 @app.route('/surveysEditor')
 @app.route('/shared/<path:text>')
-def index(path=None):
+def index(text=None):
     return render_template('index.html')
 
 
 if __name__ == '__main__':
     for d in daemon.LIST:
         threading.Thread(target=d, daemon=True).start()
-    app.run(ssl_context='adhoc', port=443, host='0.0.0.0')
+    if (not LOCALHOST): app.run(ssl_context='adhoc', port=443, host='0.0.0.0')
+    else: app.run()

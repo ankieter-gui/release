@@ -6,7 +6,7 @@ CAS_URL='https://cas.amu.edu.pl/cas/'
 CAS_VERSION=2
 
 # address and port can be changed here; do not append the name with a '/'
-APP_URL='https://192.168.1.69:443/'
+APP_URL='http://localhost:5000'
 
 # seconds between subsequent daemon wakeups (for eg. the gatherer daemon)
 DINTERVAL=5*60
@@ -20,6 +20,9 @@ ADMIN_DEFAULT_PERMISSION = 'r'
 # must be True or False; change to True to unlock the possibility to LOG IN
 # WITHOUT PASSWORD and detailed logs during app runtime
 DEBUG=True
+
+#if True, the app is not being hosted on 0.0.0.0
+LOCALHOST=True
 
 # the code below applies the given configurarion and the user is not ----------
 # encouraged to change it in any way ------------------------------------------
