@@ -59,6 +59,7 @@ def get_dashboard():
             'backgroundImg': survey.BackgroundImg,
             'userId': user.id,
             'answersCount': database.get_answers_count(survey),
+            'authorName': author.CasLogin,
             'authorId': author.id,
         })
     user_reports = database.get_user_reports(user)
@@ -76,7 +77,7 @@ def get_dashboard():
             'connectedSurvey': {"id": report.SurveyId, "name": survey.Name},
             'backgroundImg': report.BackgroundImg,
             'userId': user.id,
-            # 'author': author.Name
+            'authorName': author.CasLogin,
             'authorId': author.id,
         })
     return {"objects": result}
@@ -92,7 +93,7 @@ def get_users():
 @for_roles('s')
 def create_user():
     data = request.json
-    user = database.create_user(data["casLogin"], data["role"])
+    user = database.create_user(data["casLogin"],data['pesel'], data["role"])
     return {"id": user.id}
 
 
@@ -565,8 +566,8 @@ def login():
         return '<p>Failed to verify</p>'
 
     print(user, attributes, pgtiou)
-
-    session['username'] = user
+    u = database.get_user(user)
+    session['username'] = u.casLogin
     return redirect('/')
 
 
@@ -598,6 +599,7 @@ def get_static_file(path):
 @app.route('/reports/<path:text>')
 @app.route('/surveysEditor/<path:text>')
 @app.route('/surveysEditor')
+@app.route('/unauthorized')
 @app.route('/shared/<path:text>')
 def index(text=None):
     return render_template('index.html')
