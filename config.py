@@ -6,7 +6,7 @@ CAS_URL='https://cas.amu.edu.pl/cas/'
 CAS_VERSION=2
 
 # address and port can be changed here; do not append the name with a '/'
-APP_URL='http://localhost:5000'
+APP_URL='https://192.168.1.69:443/'
 
 # seconds between subsequent daemon wakeups (for eg. the gatherer daemon)
 DINTERVAL=5*60
