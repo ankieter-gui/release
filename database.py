@@ -18,6 +18,9 @@ db = SQLAlchemy(app)
 Role = Literal['s', 'u', 'g']
 Permission = Literal['o', 'w', 'r', 'n']
 
+PERMISSION_ORDER = ['n', 'r', 'w', 'o']
+
+
 class User(db.Model):
     __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True)
@@ -103,8 +106,8 @@ class Link(db.Model):
     __tablename__ = "Links"
     id = db.Column(db.Integer, primary_key=True)
     Salt = db.Column(db.String(SALT_LENGTH))
-    Type = db.Column(db.String, default='r', nullable=False)
-    Object = db.Column(db.String, nullable=False)
+    PermissionType = db.Column(db.String, default='r', nullable=False)
+    ObjectType = db.Column(db.String, nullable=False)
     ObjectId = db.Column(db.Integer, nullable=False)
 
 
@@ -113,6 +116,16 @@ ADMIN.add_view(ModelView(Survey, db.session))
 
 
 def get_user(login: Any = "") -> User:
+    """Get user.
+
+    Keyword arguments:
+    login -- user's cas login, id or guest if empty string (default: "")
+
+    Return value:
+    returns User object
+    """
+
+    user = None
     if not login:
         # zamiast tego blędu, jeśli nie ma loginu, to przydziel gościa
         if 'username' not in session:
@@ -123,8 +136,13 @@ def get_user(login: Any = "") -> User:
     if type(login) is str:
         if '@' in login:
             user = User.query.filter_by(CasLogin=login).first()
-        else:
+        elif re.match("[0-9]+", login):
             user = User.query.filter_by(Pesel=login).first()
+        else:
+            users = get_users()
+            for u in users["users"]:
+                if u["casLogin"].split("@")[0] == login:
+                    user = User.query.filter_by(id=u["id"]).first()
     if type(login) is int:
         user = User.query.filter_by(id=login).first()
     if user is None:
@@ -132,14 +150,31 @@ def get_user(login: Any = "") -> User:
     return user
 
 
-def create_user(CasLogin: str, Pesel:str, Role: str) -> User:
-    user = User(CasLogin=CasLogin, Pesel=Pesel ,Role=Role, FetchData=True)
+def create_user(cas_login: str, pesel: str, role: str) -> User:
+    """Create new user.
+
+    Keyword arguments:
+    cas_login -- user's cas login
+    pesel -- user's pesel
+    role -- role of the user (values: 's','u','g')
+
+    Return value:
+    returns User object
+    """
+
+    user = User(CasLogin=cas_login, Pesel=pesel, Role=role, FetchData=True)
     db.session.add(user)
     db.session.commit()
     return user
 
 
 def delete_user(user: User):
+    """Delete user.
+
+    Keyword arguments:
+    user -- User object
+    """
+
     sur_perms = SurveyPermission.query.filter_by(UserId=user.id).all()
     rep_perms = ReportPermission.query.filter_by(UserId=user.id).all()
     groups = UserGroup.query.filter_by(UserId=user.id).all()
@@ -154,32 +189,62 @@ def delete_user(user: User):
 
 
 def get_survey(id: int) -> Survey:
+    """Get survey by given id.
+
+    Keyword arguments:
+    id -- id of a survey
+
+    Return value:
+    returns Survey object
+    """
+
     survey = Survey.query.filter_by(id=id).first()
     if survey is None:
         raise error.API('no such survey')
     return survey
 
 
-def get_report(id: int) -> Report:
-    report = Report.query.filter_by(id=id).first()
+def get_report(report_id: int) -> Report:
+    """Get report by given id.
+
+    Keyword arguments:
+    id -- id of a report
+
+    Return value:
+    returns Report object
+    """
+
+    report = Report.query.filter_by(id=report_id).first()
     if report is None:
         raise error.API('no such report')
     return report
 
 
-def get_permission_link(permission: Permission, object: Literal['s', 'r'], object_id: int) -> str:
-    link = Link.query.filter_by(Type=permission, Object=object, ObjectId=object_id).first()
+def get_permission_link(permission: Permission, object_type: Literal['s', 'r'], object_id: int) -> str:
+    """Get permission link.
+
+    Keyword arguments:
+    permission -- perrmision type (values: 'o', 'w', 'r', 'n')
+    object_type -- type of an object (values: 's', 'r')
+    object_id -- Id of an object
+
+    Return value:
+    returns concatenated salt and link id as a string
+    """
+
+    link = Link.query.filter_by(PermissionType=permission, ObjectType=object_type, ObjectId=object_id).first()
     if link is not None:
         return link.Salt + str(link.id)
-    salt = secrets.randbits(5*SALT_LENGTH)
-    salt = salt.to_bytes(5*SALT_LENGTH//8+1, byteorder='big')
+
+    bits = secrets.randbits(5*SALT_LENGTH)
+    salt = bits.to_bytes(5*SALT_LENGTH//8+1, byteorder='big')
     salt = b32encode(salt).decode('utf-8')[:SALT_LENGTH]
     salt = salt.lower()
     print(salt)
     link = Link(
         Salt=salt,
-        Type=permission,
-        Object=object,
+        PermissionType=permission,
+        ObjectType=object_type,
         ObjectId=object_id
     )
     db.session.add(link)
@@ -187,34 +252,68 @@ def get_permission_link(permission: Permission, object: Literal['s', 'r'], objec
     return link.Salt + str(link.id)
 
 
-def set_permission_link(hash: str, user: User):
-    perm_order = ['n', 'r', 'w', 'o']
-    salt = hash[:SALT_LENGTH]
-    id = int(hash[SALT_LENGTH:])
-    link = Link.query.filter_by(Salt=salt, id=id).first()
+def set_permission_link(tag: str, user: User):
+    """Set permission using link.
+
+    Keyword arguments:
+    tag -- salt of a link
+    user -- User object
+
+    Return value:
+    returns permission type, object name and object id
+    """
+
+    link = get_link_details(tag)
     if link is None:
         raise error.API('wrong url')
-    object_type = link.Object
+    object_type = link.ObjectType
     if object_type == 's':
-        survey = get_survey(link.ObjectId)
-        perm = get_survey_permission(survey, user)
-        if perm_order.index(perm) >= perm_order.index(link.Type):
-            return link.Type, 'survey', survey.id
-        set_survey_permission(survey, user, link.Type)
-        return link.Type, 'survey', survey.id
+        object_name = 'survey'
+        get_object = get_survey
+        get_permission = get_survey_permission
+        set_permission = set_survey_permission
     elif object_type == 'r':
-        report = get_report(id=link.ObjectId)
-        perm = get_report_permission(report, user)
-        print(perm_order)
-        if perm_order.index(perm) >= perm_order.index(link.Type):
-            return link.Type, 'report', report.id
-        set_report_permission(report, user, link.Type)
-        return link.Type, 'report', report.id
+        object_name = 'report'
+        get_object = get_report
+        get_permission = get_report_permission
+        set_permission = set_report_permission
     else:
-        raise error.API(f'unknown object type "{object_type}"')
+        raise error.API(f'unknown database object type "{object_type}"')
+
+    object = get_object(link.ObjectId)
+    perm = get_permission(object, user)
+    if PERMISSION_ORDER.index(perm) >= PERMISSION_ORDER.index(link.PermissionType):
+        return link.PermissionType, object_name, object.id
+    set_permission(object, user, link.PermissionType, bylink=True)
+    return link.PermissionType, object_name, object.id
+
+
+def get_link_details(tag: str) -> Link:
+    """Get link details
+
+    Keyword arguments:
+    tag -- salt of a link
+
+    Return value:
+    returns Link object
+    """
+
+    salt = tag[:SALT_LENGTH]
+    id = int(tag[SALT_LENGTH:])
+    link = Link.query.filter_by(id=id, Salt=salt).first()
+    return link
 
 
 def get_report_users(report: Report) -> dict:
+    """Get users having permission to given report
+
+    Keyword arguments:
+    report -- report object
+
+    Return value:
+    returns dictionary with user's ids and permission type
+    """
+
     perms = ReportPermission.query.filter_by(ReportId=report.id).all()
     result = {}
     for perm in perms:
@@ -223,6 +322,15 @@ def get_report_users(report: Report) -> dict:
 
 
 def get_survey_users(survey: Survey) -> dict:
+    """Get users having permission to given survey
+
+    Keyword arguments:
+    survey -- Survey object
+
+    Return value:
+    returns dictionary with user's ids and permission type
+    """
+
     perms = SurveyPermission.query.filter_by(SurveyId=survey.id).all()
     result = {}
     for perm in perms:
@@ -231,6 +339,12 @@ def get_survey_users(survey: Survey) -> dict:
 
 
 def get_users() -> dict:
+    """Get all users
+
+    Return value:
+    dictionary with cas login and user id
+    """
+
     users = User.query.all()
     result = []
     for u in users:
@@ -242,28 +356,27 @@ def get_users() -> dict:
 
 
 def get_groups() -> List[str]:
+    """Get all groups
+
+    Return value:
+    list with group names
+    """
+
     user_groups = UserGroup.query.with_entities(UserGroup.Group).distinct()
     return [ug.Group for ug in user_groups]
 
 
-#def get_group(id: int) -> Group:
-#    group = Group.query.filter_by(id=id)
-#    if group is None:
-#        raise error.API('no such group')
-#    return group
+def set_user_group(user: User, group: str) -> UserGroup:
+    """Assign user to a group
 
+    Keyword arguments:
+    user -- User object
+    group -- group name
 
-#def create_group(name: str) -> Group:
-#    group = Group.query.filter_by(Name=name)
-#    if group is not None:
-#        raise error.API('group already exists')
-#    group = Group(Name=name)
-#    db.session.add(group)
-#    db.session.commit()
-#    return group
+    Return value:
+    returns UserGroup object
+    """
 
-
-def set_user_group(user: User, group: str):
     user_group = UserGroup.query.filter_by(UserId=user.id, Group=group).first()
     if user_group is not None:
         return user_group
@@ -274,6 +387,13 @@ def set_user_group(user: User, group: str):
 
 
 def unset_user_group(user: User, group: str):
+    """Unset user from a group
+
+    Keyword arguments:
+    user -- User object
+    group -- group name
+    """
+
     user_group = UserGroup.query.filter_by(UserId=user.id, Group=group)
     if user_group is None:
         raise error.API('the user is not in the group')
@@ -282,6 +402,15 @@ def unset_user_group(user: User, group: str):
 
 
 def get_user_groups(user: User) -> List[str]:
+    """Get all groups for given user
+
+    Keyword arguments:
+    user -- User object
+
+    Return value:
+    returns List with group names
+    """
+
     user_groups = UserGroup.query.filter_by(UserId=user.id).all()
     if user_groups is None:
         return []
@@ -289,26 +418,61 @@ def get_user_groups(user: User) -> List[str]:
 
 
 def get_user_surveys(user: User) -> List[Survey]:
+    """Get surveys for which the user has permissions.
+    For superadmin returns all surveys.
+
+    Keyword arguments:
+    user -- User object
+
+    Return value:
+    returns list of Survey objects
+    """
+
     if user.Role == 's':
         return Survey.query.all()
     user_surveys = SurveyPermission.query.filter_by(UserId=user.id).all()
     surveys = []
-    for user_survey in user_surveys:
-        surveys.append(Survey.query.filter_by(id=user_survey.SurveyId).first())
+    for survey in user_surveys:
+        surveys.append(Survey.query.filter_by(id=survey.SurveyId).first())
+    if 'surveys' in session:
+        for survey in session['surveys']:
+            surveys.append(Survey.query.filter_by(id=survey.id).first())
     return surveys
 
 
 def get_user_reports(user: User) -> List[Report]:
+    """Get reports for which the user has permissions.
+    For superadmin returns all reports.
+
+    Keyword arguments:
+    user -- User object
+
+    Return value:
+    returns List of Report objects
+    """
+
     if user.Role == 's':
         return Report.query.all()
     user_reports = ReportPermission.query.filter_by(UserId=user.id).all()
     reports = []
-    for user_report in user_reports:
-        reports.append(Report.query.filter_by(id=user_report.ReportId).first())
+    for report in user_reports:
+        reports.append(Report.query.filter_by(id=report.ReportId).first())
+    if 'reports' in session:
+        for report in session['reports']:
+            reports.append(Report.query.filter_by(id=report.id).first())
     return reports
 
 
 def get_group_users(group: str) -> List[User]:
+    """Get users assigned to given group.
+
+    Keyword arguments:
+    group -- name of a group
+
+    Return value:
+    returns List of User objects
+    """
+
     user_groups = UserGroup.query.filter_by(Group=group).all()
     users = []
     for user_group in user_groups:
@@ -317,19 +481,46 @@ def get_group_users(group: str) -> List[User]:
             users.append(user)
     return users
 
-def rename_report(report: Report, name: str):
+
+def rename_report(report: Report, name: str) -> int:
+    """Rename report
+
+    Keyword arguments:
+    report -- Report object
+    name -- new report name
+
+    Return value:
+    returns List of User objects
+    """
+
     rep = Report.query.filter_by(id=report.id).first()
-    rep.Name=name
+    rep.Name = name
     db.session.commit()
     return rep.id
 
 
 def delete_group(group: str):
-    user_groups = UserGroup.query.filter_by(Group=group).delete()
+    """Delete group
+
+    Keyword arguments:
+    group -- group name
+    """
+
+    UserGroup.query.filter_by(Group=group).delete()
     db.session.commit()
 
 
 def create_survey(user: User, name: str) -> Survey:
+    """Create survey by given user
+
+    Keyword arguments:
+    user -- User object
+    name -- name of a survey
+
+    Return value:
+    returns Survey object
+    """
+
     survey = Survey(Name=name, QuestionCount=0, AuthorId=user.id)
     db.session.add(survey)
     bkgs = os.listdir(path.join(ABSOLUTE_DIR_PATH,'bkg'))
@@ -344,6 +535,15 @@ def create_survey(user: User, name: str) -> Survey:
 
 # meta = {"started_on": DateTime, "ends_on": DateTime, "is_active": int}
 def set_survey_meta(survey: Survey, name: str, question_count: int, meta: dict):
+    """Add meta information for given survey.
+
+    Keyword arguments:
+    survey -- Survey object
+    name -- name of a survey
+    question_count -- amount of questions
+    meta -- dict {"started_on": DateTime, "ends_on": DateTime, "is_active": int}
+    """
+
     if survey is None:
         survey = Survey(Name=name, QuestionCount=question_count)
         db.session.add(survey)
@@ -364,6 +564,19 @@ def set_survey_meta(survey: Survey, name: str, question_count: int, meta: dict):
 
 
 def get_survey_permission(survey: Survey, user: User) -> Permission:
+    """Get permission of given survey for user.
+
+    Keyword arguments:
+    survey -- Survey object
+    user -- User object
+
+    Return value:
+    returns permission type (values: 'o', 'w', 'r', 'n')
+    """
+
+    if 'surveys' in session and str(survey.id) in session['surveys']:
+        return session['surveys'][str(survey.id)]
+
     sp = SurveyPermission.query.filter_by(SurveyId=survey.id, UserId=user.id).first()
     if sp is None and user.Role == 's':
         return ADMIN_DEFAULT_PERMISSION
@@ -372,7 +585,26 @@ def get_survey_permission(survey: Survey, user: User) -> Permission:
     return sp.Type
 
 
-def set_survey_permission(survey: Survey, user: User, permission: Permission):
+def set_survey_permission(survey: Survey, user: User, permission: Permission, bylink=False):
+    """Set permission of given survey for user.
+
+    Keyword arguments:
+    survey -- Survey object
+    user -- User object
+    permission -- permission type (values: 'o', 'w', 'r', 'n')
+    bylink -- is set by link (default: False)
+
+    Return value:
+    returns permission type (values: 'o', 'w', 'r', 'n')
+    """
+
+    if bylink and user.Role == 'g':
+        if 'surveys' not in session:
+            session['surveys'] = {}
+        if PERMISSION_ORDER.index(permission) >= PERMISSION_ORDER.index('r'):
+            session['surveys'][survey.id] = 'r'
+        return
+
     sp = SurveyPermission.query.filter_by(SurveyId=survey.id, UserId=user.id).first()
     if sp is None:
         sp = SurveyPermission(SurveyId=survey.id, UserId=user.id)
@@ -385,6 +617,15 @@ def set_survey_permission(survey: Survey, user: User, permission: Permission):
 
 
 def get_report_survey(report: Report) -> Survey:
+    """Get survey assigned to given report
+
+    Keyword arguments:
+    report -- Report object
+
+    Return value:
+    returns Survey object
+    """
+
     if report is None:
         raise error.API('no such report')
     survey = Survey.query.filter_by(id=report.SurveyId).first()
@@ -392,6 +633,19 @@ def get_report_survey(report: Report) -> Survey:
 
 
 def get_report_permission(report: Report, user: User) -> Permission:
+    """Get permission of given report for user.
+
+    Keyword arguments:
+    report -- Report object
+    user -- User object
+
+    Return value:
+    returns permission type (values: 'o', 'w', 'r', 'n')
+    """
+
+    if 'reports' in session and str(report.id) in session['reports']:
+        return session['reports'][str(report.id)]
+
     rp = ReportPermission.query.filter_by(ReportId=report.id, UserId=user.id).first()
     if rp is None and user.Role == 's':
         return ADMIN_DEFAULT_PERMISSION
@@ -400,7 +654,26 @@ def get_report_permission(report: Report, user: User) -> Permission:
     return rp.Type
 
 
-def set_report_permission(report: Report, user: User, permission: Permission):
+def set_report_permission(report: Report, user: User, permission: Permission, bylink=False):
+    """Set permission of given report for user.
+
+    Keyword arguments:
+    report -- Report object
+    user -- User object
+    permission -- permission type (values: 'o', 'w', 'r', 'n')
+    bylink -- is set by link (default: False)
+
+    Return value:
+    returns permission type (values: 'o', 'w', 'r', 'n')
+    """
+
+    if bylink and user.Role == 'g':
+        if 'reports' not in session:
+            session['reports'] = {}
+        if PERMISSION_ORDER.index(permission) >= PERMISSION_ORDER.index('r'):
+            session['reports'][report.id] = 'r'
+        return
+
     rp = ReportPermission.query.filter_by(ReportId=report.id, UserId=user.id).first()
     if rp is None:
         rp = ReportPermission(ReportId=report.id, UserId=user.id)
@@ -413,6 +686,18 @@ def set_report_permission(report: Report, user: User, permission: Permission):
 
 
 def create_report(user: User, survey: Survey, name: str, author: int) -> Report:
+    """Create report by given user
+
+    Keyword arguments:
+    user -- User object
+    survey -- Survey object to be assigned to Report
+    name -- report name
+    author -- id of an user
+
+    Return value:
+    returns Report object
+    """
+
     report = Report(Name=name, SurveyId=survey.id, AuthorId=author)
     report.BackgroundImg = Survey.query.filter_by(id=survey.id).first().BackgroundImg
     db.session.add(report)
@@ -422,13 +707,18 @@ def create_report(user: User, survey: Survey, name: str, author: int) -> Report:
 
 
 def delete_survey(survey: Survey):
+    """Delete survey
+
+    Keyword arguments:
+    survey -- Survey object
+    """
+
     # db_path = 'data/' + str(survey.id) + '.db'
     # if os.path.exists(db_path):
     #     os.remove(db_path)
     # xml_path = 'survey/' + str(survey.id) + '.xml'
     # if os.path.exists(xml_path):
     #     os.remove(xml_path)
-    id = survey.id
     SurveyPermission.query.filter_by(SurveyId=survey.id).delete()
     SurveyGroup.query.filter_by(SurveyId=survey.id).delete()
     Survey.query.filter_by(id=survey.id).delete()
@@ -436,7 +726,12 @@ def delete_survey(survey: Survey):
 
 
 def delete_report(report: Report):
-    id = report.id
+    """Delete report
+
+    Keyword arguments:
+    report -- Report object
+    """
+
     ReportPermission.query.filter_by(ReportId=report.id).delete()
     ReportGroup.query.filter_by(ReportId=report.id).delete()
     Report.query.filter_by(id=report.id).delete()
@@ -444,10 +739,28 @@ def delete_report(report: Report):
 
 
 def open_survey(survey: Survey) -> sqlite3.Connection:
+    """Connect to the survey
+
+    Keyword arguments:
+    survey -- Survey object
+
+    Return value:
+    returns sqlite3.Connection
+    """
+
     return sqlite3.connect(f"data/{survey.id}.db")
 
 
 def get_answers(survey_id: int) -> Dict:
+    """Get answers for given survey
+
+    Keyword arguments:
+    survey_id -- id of na Survey
+
+    Return value:
+    returns dictionary with answers
+    """
+
     xml = ET.parse(os.path.join(ABSOLUTE_DIR_PATH, f"survey/{survey_id}.xml"))
     result = {}
     questions = ['single', 'multi', 'groupedsingle']
@@ -476,6 +789,15 @@ def get_answers(survey_id: int) -> Dict:
 
 
 def get_types(conn: sqlite3.Connection) -> Dict[str, str]:
+    """Get column types of answers
+
+    Keyword arguments:
+    conn -- sqlite3.Connection
+
+    Return value:
+    returns dictionary with types
+    """
+
     types = {}
     cur = conn.cursor()
     cur.execute("PRAGMA table_info(data)")
@@ -486,6 +808,15 @@ def get_types(conn: sqlite3.Connection) -> Dict[str, str]:
 
 
 def get_columns(conn: sqlite3.Connection) -> List[str]:
+    """Get column names
+
+    Keyword arguments:
+    conn -- sqlite3.Connection
+
+    Return value:
+    returns list of column names
+    """
+
     columns = []
     cur = conn.cursor()
     cur.execute("PRAGMA table_info(data)")
@@ -495,7 +826,16 @@ def get_columns(conn: sqlite3.Connection) -> List[str]:
     return columns
 
 
-def get_answers_count(survey: Survey):
+def get_answers_count(survey: Survey) -> int:
+    """Get answers amount for survey
+
+    Keyword arguments:
+    survey -- Survey object
+
+    Return value:
+    returns amount of answers
+    """
+
     conn = open_survey(survey)
     cur = conn.cursor()
     cur.execute("SELECT * FROM data")
@@ -505,6 +845,13 @@ def get_answers_count(survey: Survey):
 
 
 def csv_to_db(survey: Survey, filename: str):
+    """Convert csv file to database
+
+    Keyword arguments:
+    survey -- Survey object
+    filename -- name of a csv file
+    """
+
     def shame(vals):
         counts = {}
         for v in vals:
