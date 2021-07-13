@@ -196,7 +196,6 @@ def aggregate(json_query, data):
             result = ingroups
         else:
             result = concat([result, ingroups])
-    print(result)
     return result
 
 
@@ -209,6 +208,8 @@ def reorder(data):
     Return value:
     returns survey reordered data
     """
+    
+    data = data.fillna('nd.')
 
     data.columns = [f'{aggr} {label}' for label, aggr in data.columns]
 
