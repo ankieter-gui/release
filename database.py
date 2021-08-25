@@ -1,15 +1,16 @@
 from typing import Literal, Any, List, Dict
 from flask_sqlalchemy import SQLAlchemy
 from base64 import b32encode
-from pandas import read_csv
+from pandas import read_csv, read_excel
 from flask import session
 from config import *
 import xml.etree.ElementTree as ET
+import sqlite3
 import secrets
 import random
-import re
-import sqlite3
 import error
+import csv
+import re
 import os
 
 
@@ -30,19 +31,16 @@ class User(db.Model):
     Role = db.Column(db.String, default='g', nullable=False)
 
     def as_dict(self):
-        return {
+        ud = {
             "id":        self.id,
             "casLogin":  self.CasLogin.split('@')[0],
             "fetchData": self.FetchData,
             "role":      self.Role,
             "logged":    self.Role != 'g',
         }
-
-
-#class Group(db.Model):
-#    __tablename__ = "Groups"
-#    id = db.Column(db.Integer, primary_key=True)
-#    Name = db.Column(db.String(25), primary_key=True)
+        if DEBUG:
+            ud["debug"] = True
+        return ud
 
 
 class Survey(db.Model):
@@ -846,6 +844,15 @@ def get_answers_count(survey: Survey) -> int:
     return n
 
 
+def detect_csv_sep(filename: str) -> str:
+    sep = ''
+    with open(f'raw/{filename}',"r") as csv_file:
+        res = csv.Sniffer().sniff(csv_file.read(1024))
+        csv_file.seek(0)
+        sep = res.delimiter
+    return sep
+
+
 def csv_to_db(survey: Survey, filename: str):
     """Convert csv file to database
 
@@ -865,7 +872,13 @@ def csv_to_db(survey: Survey, filename: str):
 
     try:
         conn = open_survey(survey)
-        df = read_csv(f"raw/{filename}", sep=",")
+        name, ext = filename.rsplit('.', 1)
+        if ext != "csv":
+            file = read_excel(f'raw/{name}.{ext}')
+            file.to_csv(f'raw/{name}.csv',encoding='utf-8')
+            filename = f'{name}.csv'
+        separator=detect_csv_sep(filename)
+        df = read_csv(f"raw/{filename}", sep=separator)
         df.columns = df.columns.str.replace('</?\w[^>]*>', '', regex=True)
 
         for column in df.filter(regex="czas wypełniania").columns:
@@ -882,15 +895,12 @@ def csv_to_db(survey: Survey, filename: str):
             df[u] = df[group].aggregate(shame, axis='columns')
             df = df.drop(group[:-1], axis='columns')
 
-
         df.to_sql("data", conn, if_exists="replace")
         print(f"Database for survey {survey.id} created succesfully")
         conn.close()
         return True
     except sqlite3.Error as err:
         return err
+    except Exception as e:
+        raise error.API(str(e) + ' while parsing csv/xlsx')
 
-
-if __name__ == '__main__':
-    delete_survey(get_survey(1))
-    delete_report(get_report(1))

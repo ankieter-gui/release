@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from flask import send_from_directory, redirect, url_for, request, session, g, render_template
 from config import *
 import json
@@ -554,17 +556,17 @@ def upload_results(survey_id):
 
     if 'name' in request.form:
         name = request.form['name']
-    if ext.lower() != 'csv':
-        raise error.API("expected a CSV file")
+    if ext.lower() not in ['csv', "xlsx","xls"]:
+        raise error.API("expected a CSV, XLSX or XLS file")
 
     if survey_id:
         survey = database.get_survey(survey_id)
     else:
         survey = database.create_survey(user, name)
 
-    file.save(os.path.join(ABSOLUTE_DIR_PATH, "raw/", f"{survey.id}.csv"))
+    file.save(os.path.join(ABSOLUTE_DIR_PATH, "raw/", f"{survey.id}.{ext}"))
 
-    database.csv_to_db(survey, f"{survey.id}.csv")
+    database.csv_to_db(survey, f"{survey.id}.{ext}")
     conn = database.open_survey(survey)
     survey.QuestionCount = len(database.get_columns(conn))
     conn.close()
