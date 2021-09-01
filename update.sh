@@ -7,7 +7,7 @@ REPOS=https://github.com/ankieter-gui
 git clone $REPOS/engine
 git clone $REPOS/interface
 
-mv -r engine/* ./
+mv engine/* .
 
 cd interface
 npm install
