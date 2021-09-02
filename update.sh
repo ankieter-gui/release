@@ -6,17 +6,47 @@
 
 BASE=$(pwd)
 REPOS=https://github.com/ankieter-gui
+EBRANCH=''
+IBRANCH=''
+MSG="sync"
+
+
+while [ $# -gt 0 ]; do
+	case $1 in
+    -c|--clean)
+			rm -rf $BASE/{engine,interface}
+			;;
+		-e|--engine)
+			EBRANCH=$2
+			MSG="$MSG engine: $EBRANCH"
+			shift
+			;;
+		-i|--interface)
+			IBRANCH=$2
+			MSG="$MSG interface: $IBRANCH"
+			shift
+			;;
+	esac
+	shift
+done
+
 
 git clone $REPOS/engine
-if [ $# -ge 3 ]; then
-	git checkout $1
+cd $BASE/engine
+if [ $EBRANCH ]; then
+	git checkout $EBRANCH
 fi
+git pull
+cd $BASE
 
 
 git clone $REPOS/interface
-if [ $# -ge 3 ]; then
-	git checkout $2
+cd $BASE/interface
+if [ $IBRANCH ]; then
+	git checkout $IBRANCH
 fi
+git pull
+cd $BASE
 
 mv engine/* .
 
@@ -28,8 +58,5 @@ cp -r interface/dist/frontend/* static/
 
 git add .
 
-if [ $# -ge 3 ]; then
-	git commit -am "sync engine: $1 interface: $2"
-else
-	git commit -am "sync"
-fi
+git commit -am "$MSG"
+
