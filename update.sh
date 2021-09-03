@@ -8,24 +8,24 @@ BASE=$(pwd)
 REPOS=https://github.com/ankieter-gui
 EBRANCH=''
 IBRANCH=''
-MSG="sync"
+MSG=sync
 
 
 while [ $# -gt 0 ]; do
 	case $1 in
-    -c|--clean)
-			rm -rf $BASE/{engine,interface}
-			;;
-		-e|--engine)
-			EBRANCH=$2
-			MSG="$MSG engine: $EBRANCH"
-			shift
-			;;
-		-i|--interface)
-			IBRANCH=$2
-			MSG="$MSG interface: $IBRANCH"
-			shift
-			;;
+	-c|--clean)
+		rm -rf $BASE/{engine,interface}
+		;;
+	-e|--engine)
+		EBRANCH=$2
+		MSG="$MSG engine: $EBRANCH"
+		shift
+		;;
+	-i|--interface)
+		IBRANCH=$2
+		MSG="$MSG interface: $IBRANCH"
+		shift
+		;;
 	esac
 	shift
 done
@@ -47,6 +47,7 @@ if [ $IBRANCH ]; then
 fi
 git pull
 cd $BASE
+
 
 mv engine/* .
 
