@@ -55,7 +55,11 @@ cd interface
 npm install
 ng build --configuration production
 cd $BASE
+
 cp -r interface/dist/frontend/* static/
+rm static/index.html
+
+cp interface/dist/frontend/index.html templates/
 
 git add .
 
