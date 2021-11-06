@@ -17,15 +17,18 @@ MSG=sync
 while [ $# -gt 0 ]; do
 	case $1 in
 	-c|--clean)
-                for file in *; do
-                        if [ "$file" = ".git" ]; then
-                                continue
-                        fi
-                        if [ "$file" = "update.sh" ]; then
-                                continue
-                        fi
-                        rm -rf "$file"
-                done
+		for file in *; do
+			if [ "$file" = ".git" ]; then
+				continue
+			fi
+			if [ "$file" = ".gitignore" ]; then
+				continue
+			fi
+			if [ "$file" = "update.sh" ]; then
+				continue
+			fi
+			rm -rf "$file"
+		done
 		;;
 	-e|--engine)
 		EBRANCH=$2
