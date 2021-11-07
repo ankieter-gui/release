@@ -4,17 +4,31 @@
 # Optional arguments: $1 -- engine branch
 #                     $2 -- interface branch
 
+# Define constants
 BASE=$(pwd)
 REPOS=https://github.com/ankieter-gui
+
+# Define variables
 EBRANCH=''
 IBRANCH=''
 MSG=sync
 
-
+# Process command line arguments
 while [ $# -gt 0 ]; do
 	case $1 in
 	-c|--clean)
-		rm -rf $BASE/{engine,interface}
+		for file in *; do
+			if [ "$file" = ".git" ]; then
+				continue
+			fi
+			if [ "$file" = ".gitignore" ]; then
+				continue
+			fi
+			if [ "$file" = "update.sh" ]; then
+				continue
+			fi
+			rm -rf "$file"
+		done
 		;;
 	-e|--engine)
 		EBRANCH=$2
@@ -30,7 +44,7 @@ while [ $# -gt 0 ]; do
 	shift
 done
 
-
+# Clone the engine repository and set branch
 git clone $REPOS/engine
 cd $BASE/engine
 if [ $EBRANCH ]; then
@@ -39,7 +53,7 @@ fi
 git pull
 cd $BASE
 
-
+# Cone the interface repository and set branch
 git clone $REPOS/interface
 cd $BASE/interface
 if [ $IBRANCH ]; then
@@ -48,20 +62,27 @@ fi
 git pull
 cd $BASE
 
-
+# Move engine files to the main dir
 mv engine/* .
 
+# Build frontend
 cd interface
 npm install
 ng build --configuration production
 cd $BASE
 
-cp -r interface/dist/frontend/* static/
-rm static/index.html
+mkdir static
+mkdir templates
 
+cp -r interface/dist/frontend/* static/
+if [ -e static/index.html ]; then
+	rm static/index.html
+fi
 cp interface/dist/frontend/index.html templates/
 
+# Add all new files to the release repository
 git add .
 
+# Save changes
 git commit -am "$MSG"
 
