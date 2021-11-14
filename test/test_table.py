@@ -150,6 +150,40 @@ class TestCase(unittest.TestCase):
         result = table.create(query, self.conn)
         self.assertEqual(result, expected_result)
 
+    def test_good_ten(self):
+        query = {
+            "get": [["Age Rating"]],
+            "as": ["share"],
+            "if": [["Age Rating", "!=", 4]],
+            "except": [["Price", "!=", 0.0], ["Age Rating", ">", 12]]
+        }
+        expected_result = {
+            'index': ['*'],
+            'share Age Rating': [{9: 1472, 12: 1333, 17: 262}]
+        }
+        result = table.create(query, self.conn)
+        self.assertEqual(result, expected_result)
+
+    def test_good_eleven(self):
+        query = {
+            "get": [["Double Age Rating"]],
+            "as": ["share"],
+            "if": [["Age Rating", "!=", 4]],
+            "except": [["Price", "!=", 0.0], ["Age Rating", ">", 12]],
+            "join": [
+                {
+                    'name': 'Double Age Rating',
+                    'of': ['Age Rating', 'Age Rating'],
+                }
+            ],
+        }
+        expected_result = {
+            'index': ['*'],
+            'share Double Age Rating': [{9: 2*1472, 12: 2*1333, 17: 2*262}]
+        }
+        result = table.create(query, self.conn)
+        self.assertEqual(result, expected_result)
+
     def test_bad_zero(self):
         query = {
             "get": [["Price"]],
