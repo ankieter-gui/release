@@ -68,12 +68,12 @@ cd $BASE/docs
 git checkout master
 git pull
 
+# Move engine files to the main dir
+mv engine/* .
+
 # Generate documentation files
 make html
 cd $BASE
-
-# Move engine files to the main dir
-mv engine/* .
 
 # Build frontend
 cd interface
