@@ -62,14 +62,14 @@ fi
 git pull
 cd $BASE
 
+# Move engine files to the main dir
+mv engine/* .
+
 # Clone the docs repository
 git clone $REPOS/docs
 cd $BASE/docs
 git checkout master
 git pull
-
-# Move engine files to the main dir
-mv engine/* .
 
 # Generate documentation files
 make html
