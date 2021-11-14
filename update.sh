@@ -84,14 +84,14 @@ cd $BASE
 mkdir static
 mkdir templates
 
-# Copy docs file
-cp -r $BASE/docs/_build/html/* static/
-
 cp -r interface/dist/frontend/* static/
 if [ -e static/index.html ]; then
 	rm static/index.html
 fi
 cp interface/dist/frontend/index.html templates/
+
+# Copy docs file
+cp -r $BASE/docs/_build/html/* static/
 
 # Add all new files to the release repository
 git add .
