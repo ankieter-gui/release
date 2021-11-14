@@ -62,6 +62,16 @@ fi
 git pull
 cd $BASE
 
+# Clone the docs repository
+git clone $REPOS/docs
+cd $BASE/docs
+git checkout master
+git pull
+
+# Generate documentation files
+make html
+cd $BASE
+
 # Move engine files to the main dir
 mv engine/* .
 
@@ -73,6 +83,9 @@ cd $BASE
 
 mkdir static
 mkdir templates
+
+# Copy docs file
+cp -r $BASE/docs/_build/html/* static/
 
 cp -r interface/dist/frontend/* static/
 if [ -e static/index.html ]; then
