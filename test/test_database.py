@@ -40,10 +40,25 @@ class TestCase(unittest.TestCase):
             Role='u',
             FetchData=False
         )
+        self.user_group = UserGroup(
+            UserId=1,
+            Group='student'
+        )
+        self.user_group2 = UserGroup(
+            UserId=1,
+            Group='wmi'
+        )
+        self.user_group3 = UserGroup(
+            UserId=2,
+            Group='student'
+        )
         db.session.add(self.survey)
         db.session.add(self.report)
         db.session.add(self.user)
         db.session.add(self.user2)
+        db.session.add(self.user_group)
+        db.session.add(self.user_group2)
+        db.session.add(self.user_group3)
         db.session.commit()
 
     def tearDown(self):
@@ -106,6 +121,20 @@ class TestCase(unittest.TestCase):
         delete_user(self.user)
         with self.assertRaises(error.API):
             get_user(self.user.id)
+
+    def test_get_groups(self):
+        result = get_groups()
+        expected = ['student', 'wmi']
+        self.assertListEqual(result, expected)
+
+    def test_get_user_groups(self):
+        result = get_user_groups(self.user)
+        expected = ['student', 'wmi']
+        self.assertListEqual(result, expected)
+
+    def test_set_user_groups(self):
+        set_user_group(self.user2, 'dyrektor')
+        self.assertListEqual(['dyrektor', 'student'], get_user_groups(self.user2))
 
 
 if __name__ == '__main__':

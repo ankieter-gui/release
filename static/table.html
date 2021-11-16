@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>table module &mdash; Ankieter+  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>table module &mdash; Ankieter+  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -36,17 +33,15 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Wstęp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-uzytkownika">Dla użytkownika</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-administratora">Dla administratora</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html#dla-programisty">Dla programisty</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html">Wstęp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="daemon.html">daemon module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="error.html">error module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="globals.html">globals module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grammar.html">grammar module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">table module</a></li>
@@ -79,23 +74,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="module-table">
-<span id="table-module"></span><h1>table module<a class="headerlink" href="#module-table" title="Permalink to this headline"></a></h1>
+  <div class="section" id="module-table">
+<span id="table-module"></span><h1>table module<a class="headerlink" href="#module-table" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="table.Aggregator">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">Aggregator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.Aggregator" title="Permalink to this definition"></a></dt>
+<dt id="table.Aggregator">
+<em class="property">class </em><code class="sig-prename descclassname">table.</code><code class="sig-name descname">Aggregator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">types</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.Aggregator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="table.Filter">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">Filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arity</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">',</span> <span class="pre">'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.Filter" title="Permalink to this definition"></a></dt>
+<dt id="table.Filter">
+<em class="property">class </em><code class="sig-prename descclassname">table.</code><code class="sig-name descname">Filter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">symbol</span></em>, <em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">arity</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">types</span></em>, <em class="sig-param"><span class="n">beg</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">end</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">sep</span><span class="o">=</span><span class="default_value">', '</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.Filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.aggregate">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">aggregate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.aggregate" title="Permalink to this definition"></a></dt>
+<dt id="table.aggregate">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">aggregate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.aggregate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregate survey data</p>
 <p>Keyword arguments:
 query – survey data
@@ -105,8 +100,13 @@ returns aggregated data</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.columns">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sqlite3.Connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.columns" title="Permalink to this definition"></a></dt>
+<dt id="table.applymacros">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">applymacros</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.applymacros" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="table.columns">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">columns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">types</span></em>, <em class="sig-param"><span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3.Connection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Obtain dataframe required to compute the query</p>
 <p>Keyword arguments:
 query – survey data
@@ -116,8 +116,13 @@ returns dataframe object</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.create">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">sqlite3.Connection</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.create" title="Permalink to this definition"></a></dt>
+<dt id="table.count">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="table.create">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3.Connection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.create" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create data from survey</p>
 <p>Keyword arguments:
 query – survey data
@@ -127,58 +132,23 @@ returns survey data</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.filter_eq">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_eq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_eq" title="Permalink to this definition"></a></dt>
+<dt id="table.get_pandas_filter_of">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">get_pandas_filter_of</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_filter</span></em>, <em class="sig-param"><span class="n">ctype</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.get_pandas_filter_of" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.filter_ge">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_ge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_ge" title="Permalink to this definition"></a></dt>
+<dt id="table.get_sql_filter_of">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">get_sql_filter_of</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_filter</span></em>, <em class="sig-param"><span class="n">types</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.get_sql_filter_of" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.filter_gt">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_gt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_gt" title="Permalink to this definition"></a></dt>
+<dt id="table.mode">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.mode" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.filter_le">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_le</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_le" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.filter_lt">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_lt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_lt" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.filter_ne">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_ne</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_ne" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.filter_ni">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">filter_ni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.filter_ni" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.get_pandas_filter_of">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">get_pandas_filter_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_filter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ctype</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.get_pandas_filter_of" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.get_sql_filter_of">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">get_sql_filter_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_filter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.get_sql_filter_of" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.mode">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.mode" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="table.reorder">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">reorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.reorder" title="Permalink to this definition"></a></dt>
+<dt id="table.reorder">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">reorder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.reorder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reorder survey data</p>
 <p>Keyword arguments:
 data – survey data</p>
@@ -187,25 +157,30 @@ returns survey reordered data</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.rows">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">rows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.rows" title="Permalink to this definition"></a></dt>
+<dt id="table.rows">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">rows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.rows" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.share">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">share</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.share" title="Permalink to this definition"></a></dt>
+<dt id="table.share">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">share</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.share" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="table.typecheck">
-<span class="sig-prename descclassname"><span class="pre">table.</span></span><span class="sig-name descname"><span class="pre">typecheck</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.typecheck" title="Permalink to this definition"></a></dt>
+<dt id="table.tobasetypes">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">tobasetypes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.tobasetypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="table.typecheck">
+<code class="sig-prename descclassname">table.</code><code class="sig-name descname">typecheck</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">query</span></em>, <em class="sig-param"><span class="n">types</span></em><span class="sig-paren">)</span><a class="headerlink" href="#table.typecheck" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check types of survey data</p>
 <p>Keyword arguments:
 query – survey data
 types – column types</p>
 </dd></dl>
 
-</section>
+</div>
 
 
            </div>
