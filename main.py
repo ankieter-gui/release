@@ -115,7 +115,7 @@ def get_dictionary():
 def create_survey():
     user = database.get_user()
     r = request.json
-    if not r["name"]:
+    if 'name' not in r or not r["name"]:
         raise error.API("survey name can't be blank")
     survey = database.create_survey(user, r["name"])
     return {
@@ -127,7 +127,7 @@ def create_survey():
 @on_errors('could not upload survey')
 @for_roles('s', 'u')
 def upload_survey(survey_id):
-    if not request.files['file']:
+    if 'file' not in request not request.files['file']:
         raise error.API('empty survey data')
 
     file = request.files['file']
