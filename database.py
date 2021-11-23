@@ -22,6 +22,9 @@ Permission = Literal['o', 'w', 'r', 'n']
 PERMISSION_ORDER = ['n', 'r', 'w', 'o']
 
 
+logger = logging.getLogger(__name__)
+logging.config.dictConfig(LOGGING)
+
 class User(db.Model):
     __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True)
@@ -163,6 +166,7 @@ def create_user(cas_login: str, pesel: str, role: str) -> User:
     user = User(CasLogin=cas_login, Pesel=pesel, Role=role, FetchData=True)
     db.session.add(user)
     db.session.commit()
+    logger.info(f'New user has been added. UserId: {user.id}, CasLogin: {cas_login}')
     return user
 
 
@@ -185,6 +189,7 @@ def delete_user(user: User):
         db.session.delete(g)
     db.session.delete(user)
     db.session.commit()
+    logger.info(f'User has been removed. UserId: {user.id}, CasLogin: {user.CasLogin}')
 
 
 def get_survey(survey_id: int) -> Survey:
@@ -534,6 +539,7 @@ def create_survey(user: User, name: str) -> Survey:
     survey = Survey(Name=name, QuestionCount=0, AuthorId=user.id, BackgroundImg=random.choice(backgrounds))
     db.session.add(survey)
     db.session.commit()
+    logger.info(f'New survey entry has been added to database. SurveyId: {survey.id}, Name {name}')
     set_survey_permission(survey, user, 'o')
     return survey
 
@@ -997,6 +1003,7 @@ def csv_to_db(survey: Survey, filename: str, defaults: dict = {}):
 
         df.to_sql("data", conn, if_exists="replace")
         print(f"Database for survey {survey.id} created succesfully")
+        logger.info(f"Database for survey {survey.id} created successfully")
         conn.close()
         return True
     except sqlite3.Error as err:
