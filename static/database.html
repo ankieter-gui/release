@@ -319,14 +319,23 @@
 <dl class="py function">
 <dt id="database.create_report">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">create_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.User" title="database.User">database.User</a></span></em>, <em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">author</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#database.Report" title="database.Report">database.Report</a><a class="headerlink" href="#database.create_report" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create report by given user</p>
-<p>Keyword arguments:
-user – User object
-survey – Survey object to be assigned to Report
-name – report name
-author – id of an user</p>
-<p>Return value:
-returns Report object</p>
+<dd><p>Create report for a given user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The creator of the report</p></li>
+<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The source survey of the report</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – The name of the new report</p></li>
+<li><p><strong>author</strong> (<em>int</em>) – The database id of the creator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The newly created report</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#database.Report" title="database.Report">Report</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -336,12 +345,12 @@ returns Report object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – the creator of the new survey</p></li>
-<li><p><strong>name</strong> (<em>str</em>) – name of a survey</p></li>
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The creator of the new survey</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of a survey</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the object of the new survey</p>
+<dd class="field-even"><p>The object of the new survey</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#database.Survey" title="database.Survey">Survey</a></p>
@@ -356,13 +365,13 @@ returns Report object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>cas_login</strong> (<em>str</em>) – new user’s cas login</p></li>
-<li><p><strong>pesel</strong> (<em>str</em>) – new user’s PESEL number</p></li>
-<li><p><strong>role</strong> (<em>Role</em>) – new user’s role (values: ‘s’,’u’,’g’)</p></li>
+<li><p><strong>cas_login</strong> (<em>str</em>) – New user’s cas login</p></li>
+<li><p><strong>pesel</strong> (<em>str</em>) – New user’s PESEL number</p></li>
+<li><p><strong>role</strong> (<em>Role</em>) – New user’s role (values: ‘s’,’u’,’g’)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the new user’s User object</p>
+<dd class="field-even"><p>The new user’s User object</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#database.User" title="database.User">User</a></p>
@@ -373,11 +382,14 @@ returns Report object</p>
 <dl class="py function">
 <dt id="database.csv_to_db">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">csv_to_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">defaults</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.csv_to_db" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert csv file to database</p>
+<dd><p>Read the source CSV file and save it to a new database</p>
 <p>Keyword arguments:
-survey – Survey objectct
-filename – name of a csv file
-defaults – a dict with default value for each column name</p>
+:param survey: The Survey
+:type survey: Survey
+:param filename: Name of the source CSV file in the raw/ directory
+:type filename: str
+:param defaults: A dict with default values set for each column name
+:type defaults: Dict</p>
 </dd></dl>
 
 <dl class="py function">
@@ -386,7 +398,7 @@ defaults – a dict with default value for each column name</p>
 <dd><p>Delete a group</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>group</strong> (<em>str</em>) – the name of the group</p>
+<dd class="field-odd"><p><strong>group</strong> (<em>str</em>) – The name of the group</p>
 </dd>
 </dl>
 </dd></dl>
@@ -395,16 +407,22 @@ defaults – a dict with default value for each column name</p>
 <dt id="database.delete_report">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">delete_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Report" title="database.Report">database.Report</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.delete_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete report</p>
-<p>Keyword arguments:
-report – Report object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – The report to be deleted</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.delete_survey">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">delete_survey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.delete_survey" title="Permalink to this definition">¶</a></dt>
 <dd><p>Delete survey</p>
-<p>Keyword arguments:
-survey – Survey object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey to be deleted</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -414,7 +432,7 @@ survey – Survey object</p>
 from SurveyPermissions and ReportPermissions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – object of the user to be deleted</p>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The user to be deleted</p>
 </dd>
 </dl>
 </dd></dl>
@@ -422,7 +440,19 @@ from SurveyPermissions and ReportPermissions.</p>
 <dl class="py function">
 <dt id="database.detect_csv_sep">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">detect_csv_sep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#database.detect_csv_sep" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Detect the separator used in a raw source CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The name of the raw CSV in the raw/ directory</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The separator string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="database.get_all_users">
@@ -442,44 +472,83 @@ from SurveyPermissions and ReportPermissions.</p>
 <dt id="database.get_answers">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_answers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#database.get_answers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get answers for given survey</p>
-<p>Keyword arguments:
-survey_id – id of na Survey</p>
-<p>Return value:
-returns dictionary with answers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>survey_id</strong> – Id of the survey</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Answers in the survey</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.get_answers_count">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_answers_count</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#database.get_answers_count" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get answers amount for survey</p>
-<p>Keyword arguments:
-survey – Survey object</p>
-<p>Return value:
-returns amount of answers</p>
+<dd><p>Get number of answers in the database for a given survey.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The number of answers</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.get_columns">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_columns</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3.Connection</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#database.get_columns" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get column names</p>
-<p>Keyword arguments:
-conn – sqlite3.Connection</p>
-<p>Return value:
-returns list of column names</p>
+<dd><p>Get column names in the order just like it is returned from the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>conn</strong> (<em>sqlite3.Connection</em>) – Connection to the database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of column names in the database.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Lis[str]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.get_dashboard">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_dashboard</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#database.get_dashboard" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get dashboard for user</p>
-<p>Return value:
-returns dictionary with surveys and reports</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns dictionary with surveys and reports</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.get_default_values">
-<code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_default_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.get_default_values" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_default_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#database.get_default_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get default value string for every question in the survey database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dict from question name to a set of its defaults</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="database.get_group_users">
@@ -493,7 +562,7 @@ returns dictionary with surveys and reports</p>
 <dd class="field-even"><p>str</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>returns List of User objects</p>
+<dd class="field-odd"><p>Returns List of User objects</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[<a class="reference internal" href="#database.User" title="database.User">User</a>]</p>
@@ -521,10 +590,10 @@ returns dictionary with surveys and reports</p>
 <dd><p>Get link details</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tag</strong> (<em>str</em>) – salt and id string from the link</p>
+<dd class="field-odd"><p><strong>tag</strong> (<em>str</em>) – Salt and id string from the link</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>returns a Link object</p>
+<dd class="field-even"><p>Returns a Link object</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference internal" href="#database.Link" title="database.Link">Link</a></p>
@@ -539,13 +608,13 @@ returns dictionary with surveys and reports</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>permission</strong> (<em>Role</em>) – permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p></li>
-<li><p><strong>object_type</strong> (<em>Literal</em><em>[</em><em>'s'</em><em>, </em><em>'r'</em><em>]</em>) – type of the object shared by the link</p></li>
-<li><p><strong>object_id</strong> (<em>int</em>) – id of the object</p></li>
+<li><p><strong>permission</strong> (<em>Role</em>) – Permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p></li>
+<li><p><strong>object_type</strong> (<em>Literal</em><em>[</em><em>'s'</em><em>, </em><em>'r'</em><em>]</em>) – Type of the object shared by the link</p></li>
+<li><p><strong>object_id</strong> (<em>int</em>) – Id of the object</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a concatenated salt and link id as a string</p>
+<dd class="field-even"><p>A concatenated salt and link id as a string</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>str</p>
@@ -558,32 +627,48 @@ returns dictionary with surveys and reports</p>
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#database.Report" title="database.Report">database.Report</a><a class="headerlink" href="#database.get_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get report by given id.</p>
 <p>Keyword arguments:
-:param id: id of a report
+:param id: Id of a report
 :type id: int
 :raises error.API: no such report
-:return: returns requested report object
+:return: Requested report object
 :rtype: Report</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.get_report_permission">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_report_permission</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Report" title="database.Report">database.Report</a></span></em>, <em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.User" title="database.User">database.User</a></span></em><span class="sig-paren">)</span> &#x2192; Literal<span class="p">[</span>o<span class="p">, </span>w<span class="p">, </span>r<span class="p">, </span>n<span class="p">]</span><a class="headerlink" href="#database.get_report_permission" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get permission of given report for user.</p>
-<p>Keyword arguments:
-report – Report object
-user – User object</p>
-<p>Return value:
-returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
+<dd><p>Get permission of given user for the report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – The report</p></li>
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The user whose permissions are to be checked</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The user’s permissions for the report</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Permission</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="database.get_report_survey">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_report_survey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Report" title="database.Report">database.Report</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a><a class="headerlink" href="#database.get_report_survey" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get survey assigned to given report</p>
-<p>Keyword arguments:
-report – Report object</p>
-<p>Return value:
-returns Survey object</p>
+<dd><p>Get survey assigned to the given report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – Report object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The source survey of the report</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#database.Survey" title="database.Survey">Survey</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -592,10 +677,10 @@ returns Survey object</p>
 <dd><p>Get users having permission to the given report</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – the report</p>
+<dd class="field-odd"><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – The report</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>returns a dict with user ids as keys and their permissions under them</p>
+<dd class="field-even"><p>Returns a dict with user ids as keys and their permissions under them</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -609,13 +694,13 @@ returns Survey object</p>
 <dd><p>Get survey by given id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>survey_id</strong> (<em>int</em>) – survey’s id</p>
+<dd class="field-odd"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="error.html#error.API" title="error.API"><strong>error.API</strong></a> – no such survey</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>returns survey</p>
+<dd class="field-odd"><p>Returns survey</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="#database.Survey" title="database.Survey">Survey</a></p>
@@ -626,12 +711,21 @@ returns Survey object</p>
 <dl class="py function">
 <dt id="database.get_survey_permission">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_survey_permission</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.User" title="database.User">database.User</a></span></em><span class="sig-paren">)</span> &#x2192; Literal<span class="p">[</span>o<span class="p">, </span>w<span class="p">, </span>r<span class="p">, </span>n<span class="p">]</span><a class="headerlink" href="#database.get_survey_permission" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get permission of given survey for user.</p>
-<p>Keyword arguments:
-survey – Survey object
-user – User object</p>
-<p>Return value:
-returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
+<dd><p>Get permission of given user for the survey.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p></li>
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The user whose permissions are to be checked</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The user’s permissions for the survey</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Permission</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -640,10 +734,10 @@ returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
 <dd><p>Get users having permission to given survey</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – the survey</p>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>returns a dict with user ids as keys and their permissions under them</p>
+<dd class="field-even"><p>Returns a dict with user ids as keys and their permissions under them</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
@@ -654,11 +748,18 @@ returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
 <dl class="py function">
 <dt id="database.get_types">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_types</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3.Connection</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="headerlink" href="#database.get_types" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get column types of answers</p>
-<p>Keyword arguments:
-conn – sqlite3.Connection</p>
-<p>Return value:
-returns dictionary with types</p>
+<dd><p>Get types for each column in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>conn</strong> (<em>sqlite3.Connection</em>) – Connection to the database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A dictionary mapping names of columns to SQL names of their types</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict[str, str]</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -667,7 +768,7 @@ returns dictionary with types</p>
 <dd><p>Get a user object from DB.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>login</strong> – user’s cas login, id or guest if empty string (default: “”)</p>
+<dd class="field-odd"><p><strong>login</strong> – User’s CAS login, id or guest if empty string (default: “”)</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="error.html#error.API" title="error.API"><strong>error.API</strong></a> – no such user</p>
@@ -687,7 +788,7 @@ returns dictionary with types</p>
 <dd><p>Get all groups for given user</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – given user</p>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – Given user</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>List of user’s groups names</p>
@@ -705,10 +806,10 @@ returns dictionary with types</p>
 For administrators it returns all reports.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – user object</p>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – User object</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of Report objects</p>
+<dd class="field-even"><p>List of Report objects</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#database.Report" title="database.Report">Report</a>]</p>
@@ -723,10 +824,10 @@ For administrators it returns all reports.</p>
 For administrators it returns all surveys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – user object</p>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – User object</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of Survey objects</p>
+<dd class="field-even"><p>List of Survey objects</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="#database.Survey" title="database.Survey">Survey</a>]</p>
@@ -737,11 +838,18 @@ For administrators it returns all surveys.</p>
 <dl class="py function">
 <dt id="database.open_survey">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">open_survey</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span> &#x2192; sqlite3.Connection<a class="headerlink" href="#database.open_survey" title="Permalink to this definition">¶</a></dt>
-<dd><p>Connect to the survey</p>
-<p>Keyword arguments:
-survey – Survey object</p>
-<p>Return value:
-returns sqlite3.Connection</p>
+<dd><p>Open an SQLite3 connection to the survey database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A connection to the DB of the survey</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>sqlite3.Connection</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -751,8 +859,8 @@ returns sqlite3.Connection</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – the Report object</p></li>
-<li><p><strong>name</strong> (<em>str</em>) – new report name</p></li>
+<li><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – The Report object</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – New report name</p></li>
 </ul>
 </dd>
 </dl>
@@ -765,8 +873,8 @@ returns sqlite3.Connection</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – the Survey object</p></li>
-<li><p><strong>name</strong> (<em>str</em>) – new survey name</p></li>
+<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey object</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – New survey name</p></li>
 </ul>
 </dd>
 </dl>
@@ -779,12 +887,12 @@ returns sqlite3.Connection</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tag</strong> (<em>str</em>) – salt and id string from the link</p></li>
+<li><p><strong>tag</strong> (<em>str</em>) – Salt and id string from the link</p></li>
 <li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – User that will gain the permission</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>returns permission type, object name and object id</p>
+<dd class="field-even"><p>Returns permission type, object name and object id</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>Permission, object, int</p>
@@ -795,14 +903,17 @@ returns sqlite3.Connection</p>
 <dl class="py function">
 <dt id="database.set_report_permission">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">set_report_permission</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Report" title="database.Report">database.Report</a></span></em>, <em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.User" title="database.User">database.User</a></span></em>, <em class="sig-param"><span class="n">permission</span><span class="p">:</span> <span class="n">Literal<span class="p">[</span>o<span class="p">, </span>w<span class="p">, </span>r<span class="p">, </span>n<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">bylink</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.set_report_permission" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set permission of given report for user.</p>
-<p>Keyword arguments:
-report – Report object
-user – User object
-permission – permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)
-bylink – is set by link (default: False)</p>
-<p>Return value:
-returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
+<dd><p>Set permission of given user for report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>report</strong> (<a class="reference internal" href="#database.Report" title="database.Report"><em>Report</em></a>) – The report</p></li>
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The user whose permissions are to be set</p></li>
+<li><p><strong>permission</strong> (<em>Permission</em>) – The user’s permissions for the report</p></li>
+<li><p><strong>bylink</strong> – Is the permission set because of a link? (default: False)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -812,10 +923,10 @@ returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – the survey to be modified</p></li>
-<li><p><strong>name</strong> (<em>int</em>) – the new name of a survey</p></li>
-<li><p><strong>question_count</strong> (<em>int</em>) – number of questions</p></li>
-<li><p><strong>meta</strong> (<em>dict</em>) – other information (started_on, ends_on, is_active)</p></li>
+<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey to be modified</p></li>
+<li><p><strong>name</strong> (<em>int</em>) – The new name of a survey</p></li>
+<li><p><strong>question_count</strong> (<em>int</em>) – Number of questions</p></li>
+<li><p><strong>meta</strong> (<em>dict</em>) – Other information (started_on, ends_on, is_active)</p></li>
 </ul>
 </dd>
 </dl>
@@ -824,14 +935,17 @@ returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
 <dl class="py function">
 <dt id="database.set_survey_permission">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">set_survey_permission</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.User" title="database.User">database.User</a></span></em>, <em class="sig-param"><span class="n">permission</span><span class="p">:</span> <span class="n">Literal<span class="p">[</span>o<span class="p">, </span>w<span class="p">, </span>r<span class="p">, </span>n<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">bylink</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.set_survey_permission" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set permission of given survey for user.</p>
-<p>Keyword arguments:
-survey – Survey object
-user – User object
-permission – permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)
-bylink – is set by link (default: False)</p>
-<p>Return value:
-returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
+<dd><p>Set permission of given user for survey.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p></li>
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – The user whose permissions are to be set</p></li>
+<li><p><strong>permission</strong> (<em>Permission</em>) – The user’s permissions for the survey</p></li>
+<li><p><strong>bylink</strong> – Is the permission set because of a link? (default: False)</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -855,8 +969,8 @@ returns permission type (values: ‘o’, ‘w’, ‘r’, ‘n’)</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – user object</p></li>
-<li><p><strong>group</strong> (<em>str</em>) – group name</p></li>
+<li><p><strong>user</strong> (<a class="reference internal" href="#database.User" title="database.User"><em>User</em></a>) – User object</p></li>
+<li><p><strong>group</strong> (<em>str</em>) – Group name</p></li>
 </ul>
 </dd>
 </dl>

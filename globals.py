@@ -5,31 +5,6 @@ from flask_cors import CORS
 from cas import CASClient
 from os.path import dirname, realpath
 from os import urandom, path, chdir
-import logging.config
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'standard': {
-            'format': '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'log/file.log',
-            'formatter': 'standard'
-        },
-    },
-    'loggers': {
-        'database': {'handlers': ['file'], 'level': 'DEBUG', 'propagate': True, },
-        'main': {'handlers': ['file'], 'level': 'DEBUG', 'propagate': True, },
-    },
-}
-
-logging.config.dictConfig(LOGGING)
 
 try:
     # Import the config

@@ -12,8 +12,6 @@ import daemon
 import table
 import error
 
-logger = logging.getLogger('main')
-logging.config.dictConfig(LOGGING)
 
 def on_errors(details):
     def on_error_decorator(f):
@@ -62,7 +60,7 @@ def get_all_users():
 @for_roles('s')
 def create_user():
     data = request.json
-    user = database.create_user(data["casLogin"], data['pesel'], data["role"])
+    user = database.create_user(data["casLogin"],data['pesel'], data["role"])
     return {"id": user.id}
 
 
@@ -118,9 +116,7 @@ def create_survey():
     user = database.get_user()
     r = request.json
     if 'name' not in r or not r["name"]:
-        logger.error("survey name can't be blank")
         raise error.API("survey name can't be blank")
-
     survey = database.create_survey(user, r["name"])
     return {
         "id": survey.id
@@ -132,12 +128,13 @@ def create_survey():
 @for_roles('s', 'u')
 def upload_survey(survey_id):
     if 'file' not in request.files or not request.files['file']:
-        logger.error("empty survey data")
         raise error.API('empty survey data')
 
     file = request.files['file']
+    name, ext = file.filename.rsplit('.', 1)
+    # if ext.lower() != 'xml':
+    #     raise error.API('expected a XML file')
     file.save(f'survey/{survey_id}.xml')
-    logger.info(f'Survey xml has been written to survey folder. filename: {survey_id}.xml')
     return {
         "id": survey_id
     }
@@ -530,7 +527,6 @@ def upload_results(survey_id):
         defaults = {}
 
     file.save(f"raw/{survey.id}.{ext}")
-    logger.info(f'Survey {ext} has been written to raw folder. filename: {survey_id}.{ext}')
 
     database.csv_to_db(survey, f"{survey.id}.{ext}", defaults)
     conn = database.open_survey(survey)
