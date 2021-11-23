@@ -417,13 +417,15 @@
 <dt id="database.csv_to_db">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">csv_to_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">defaults</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#database.csv_to_db" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the source CSV file and save it to a new database</p>
-<p>Keyword arguments:
-:param survey: The Survey
-:type survey: Survey
-:param filename: Name of the source CSV file in the raw/ directory
-:type filename: str
-:param defaults: A dict with default values set for each column name
-:type defaults: Dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>survey</strong> (<a class="reference internal" href="#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – Name of the source CSV file in the raw/ directory</p></li>
+<li><p><strong>defaults</strong> (<em>Dict</em>) – A dict with default values set for each column name</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -660,12 +662,20 @@ from SurveyPermissions and ReportPermissions.</p>
 <dt id="database.get_report">
 <code class="sig-prename descclassname">database.</code><code class="sig-name descname">get_report</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">report_id</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#database.Report" title="database.Report">database.Report</a><a class="headerlink" href="#database.get_report" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get report by given id.</p>
-<p>Keyword arguments:
-:param id: Id of a report
-:type id: int
-:raises error.API: no such report
-:return: Requested report object
-:rtype: Report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>int</em>) – Id of a report</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="error.html#error.API" title="error.API"><strong>error.API</strong></a> – no such report</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Requested report object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#database.Report" title="database.Report">Report</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
