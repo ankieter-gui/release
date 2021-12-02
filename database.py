@@ -22,6 +22,9 @@ Permission = Literal['o', 'w', 'r', 'n']
 PERMISSION_ORDER = ['n', 'r', 'w', 'o']
 
 
+logger = logging.getLogger(__name__)
+logging.config.dictConfig(LOGGING)
+
 class User(db.Model):
     __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True) #: User Id
@@ -113,7 +116,11 @@ ADMIN.add_view(ModelView(Survey, db.session))
 def get_user(login: Any = "") -> User:
     """Get a user object from DB.
 
+<<<<<<< HEAD
+    :param login: user's cas login, id or guest if empty string (default: "")
+=======
     :param login: User's CAS login, id or guest if empty string (default: "")
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :raises error.API: no such user
     :return: User object
     :rtype: User
@@ -146,6 +153,19 @@ def get_user(login: Any = "") -> User:
 
 def create_user(cas_login: str, pesel: str, role: str) -> User:
     """Create a new user.
+<<<<<<< HEAD
+
+    :param cas_login: new user's cas login
+    :type cas_login: str
+
+    :param pesel: new user's PESEL number
+    :type pesel: str
+
+    :param role: new user's role (values: 's','u','g')
+    :type role: Role
+
+    :return: the new user's User object
+=======
 
     :param cas_login: New user's cas login
     :type cas_login: str
@@ -157,12 +177,14 @@ def create_user(cas_login: str, pesel: str, role: str) -> User:
     :type role: Role
 
     :return: The new user's User object
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: User
     """
 
     user = User(CasLogin=cas_login, Pesel=pesel, Role=role, FetchData=True)
     db.session.add(user)
     db.session.commit()
+    logger.info(f'New user has been added. UserId: {user.id}, CasLogin: {cas_login}')
     return user
 
 
@@ -170,7 +192,11 @@ def delete_user(user: User):
     """Delete user from Users database and their permissions
     from SurveyPermissions and ReportPermissions.
 
+<<<<<<< HEAD
+    :param user: object of the user to be deleted
+=======
     :param user: The user to be deleted
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type user: User
     """
 
@@ -185,6 +211,7 @@ def delete_user(user: User):
         db.session.delete(g)
     db.session.delete(user)
     db.session.commit()
+    logger.info(f'User has been removed. UserId: {user.id}, CasLogin: {user.CasLogin}')
 
 
 def get_survey(survey_id: int) -> Survey:
@@ -206,10 +233,18 @@ def get_survey(survey_id: int) -> Survey:
 def get_report(report_id: int) -> Report:
     """Get report by given id.
 
+<<<<<<< HEAD
+    Keyword arguments:
+    :param id: id of a report
+    :type id: int
+    :raises error.API: no such report
+    :return: returns requested report object
+=======
     :param id: Id of a report
     :type id: int
     :raises error.API: no such report
     :return: Requested report object
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: Report
     """
 
@@ -222,6 +257,16 @@ def get_report(report_id: int) -> Report:
 def get_permission_link(permission: Permission, object_type: Literal['s', 'r'], object_id: int) -> str:
     """Create and obtain a permission link.
 
+<<<<<<< HEAD
+    :param permission: permission type (values: 'o', 'w', 'r', 'n')
+    :type permission: Role
+    :param object_type: type of the object shared by the link
+    :type object_type: Literal['s', 'r']
+    :param object_id: id of the object
+    :type object_id: int
+
+    :return: a concatenated salt and link id as a string
+=======
     :param permission: Permission type (values: 'o', 'w', 'r', 'n')
     :type permission: Role
     :param object_type: Type of the object shared by the link
@@ -230,6 +275,7 @@ def get_permission_link(permission: Permission, object_type: Literal['s', 'r'], 
     :type object_id: int
 
     :return: A concatenated salt and link id as a string
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: str
     """
 
@@ -256,12 +302,20 @@ def get_permission_link(permission: Permission, object_type: Literal['s', 'r'], 
 def set_permission_link(tag: str, user: User):
     """Set permission using link.
 
+<<<<<<< HEAD
+    :param tag: salt and id string from the link
+=======
     :param tag: Salt and id string from the link
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type tag: str
     :param user: User that will gain the permission
     :type user: User
 
+<<<<<<< HEAD
+    :return: returns permission type, object name and object id
+=======
     :return: Returns permission type, object name and object id
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: Permission, object, int
     """
 
@@ -293,10 +347,17 @@ def set_permission_link(tag: str, user: User):
 def get_link_details(tag: str) -> Link:
     """Get link details
 
+<<<<<<< HEAD
+    :param tag: salt and id string from the link
+    :type tag: str
+
+    :return: returns a Link object
+=======
     :param tag: Salt and id string from the link
     :type tag: str
 
     :return: Returns a Link object
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: Link
     """
 
@@ -309,10 +370,17 @@ def get_link_details(tag: str) -> Link:
 def get_report_users(report: Report) -> dict:
     """Get users having permission to the given report
 
+<<<<<<< HEAD
+    :param report: the report
+    :type report: Report
+
+    :return: returns a dict with user ids as keys and their permissions under them
+=======
     :param report: The report
     :type report: Report
 
     :return: Returns a dict with user ids as keys and their permissions under them
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: dict
     """
 
@@ -326,10 +394,17 @@ def get_report_users(report: Report) -> dict:
 def get_survey_users(survey: Survey) -> dict:
     """Get users having permission to given survey
 
+<<<<<<< HEAD
+    :param survey: the survey
+    :type survey: Survey
+
+    :return: returns a dict with user ids as keys and their permissions under them
+=======
     :param survey: The survey
     :type survey: Survey
 
     :return: Returns a dict with user ids as keys and their permissions under them
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: dict
     """
 
@@ -387,9 +462,15 @@ def set_user_group(user: User, group_name: str):
 def unset_user_group(user: User, group: str):
     """Unset user from a group.
 
+<<<<<<< HEAD
+    :param user: user object
+    :type user: User
+    :param group: group name
+=======
     :param user: User object
     :type user: User
     :param group: Group name
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type group: str
     """
 
@@ -419,10 +500,17 @@ def get_user_surveys(user: User) -> List[Survey]:
     """Get surveys for which the user has permissions.
     For administrators it returns all surveys.
 
+<<<<<<< HEAD
+    :param user: user object
+    :type user: User
+
+    :return: list of Survey objects
+=======
     :param user: User object
     :type user: User
 
     :return: List of Survey objects
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: List[Survey]
     """
 
@@ -442,10 +530,17 @@ def get_user_reports(user: User) -> List[Report]:
     """Get reports for which the user has permissions.
     For administrators it returns all reports.
 
+<<<<<<< HEAD
+    :param user: user object
+    :type user: User
+
+    :return: list of Report objects
+=======
     :param user: User object
     :type user: User
 
     :return: List of Report objects
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: List[Report]
     """
 
@@ -467,7 +562,11 @@ def get_group_users(group: str) -> List[User]:
     :param group: Name of a group
     :rtype group: str
 
+<<<<<<< HEAD
+    :return: returns List of User objects
+=======
     :return: Returns List of User objects
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: List[User]
     """
 
@@ -483,9 +582,15 @@ def get_group_users(group: str) -> List[User]:
 def rename_report(report: Report, name: str):
     """Rename report.
 
+<<<<<<< HEAD
+    :param report: the Report object
+    :type report: Report
+    :param name: new report name
+=======
     :param report: The Report object
     :type report: Report
     :param name: New report name
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type name: str
     """
 
@@ -496,9 +601,15 @@ def rename_report(report: Report, name: str):
 def rename_survey(survey: Survey, name: str):
     """Rename survey.
 
+<<<<<<< HEAD
+    :param survey: the Survey object
+    :type survey: Survey
+    :param name: new survey name
+=======
     :param survey: The Survey object
     :type survey: Survey
     :param name: New survey name
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type name: str
     """
 
@@ -509,7 +620,11 @@ def rename_survey(survey: Survey, name: str):
 def delete_group(group: str):
     """Delete a group
 
+<<<<<<< HEAD
+    :param group: the name of the group
+=======
     :param group: The name of the group
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type group: str
     """
 
@@ -520,12 +635,21 @@ def delete_group(group: str):
 def create_survey(user: User, name: str) -> Survey:
     """Create survey by given user
 
+<<<<<<< HEAD
+    :param user: the creator of the new survey
+    :type user: User
+    :param name: name of a survey
+    :type name: str
+
+    :return: the object of the new survey
+=======
     :param user: The creator of the new survey
     :type user: User
     :param name: Name of a survey
     :type name: str
 
     :return: The object of the new survey
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :rtype: Survey
     """
 
@@ -533,6 +657,7 @@ def create_survey(user: User, name: str) -> Survey:
     survey = Survey(Name=name, QuestionCount=0, AuthorId=user.id, BackgroundImg=random.choice(backgrounds))
     db.session.add(survey)
     db.session.commit()
+    logger.info(f'New survey entry has been added to database. SurveyId: {survey.id}, Name {name}')
     set_survey_permission(survey, user, 'o')
     return survey
 
@@ -541,6 +666,15 @@ def create_survey(user: User, name: str) -> Survey:
 def set_survey_meta(survey: Survey, name: str, question_count: int, meta: dict):
     """Add meta information of a given survey.
 
+<<<<<<< HEAD
+    :param survey: the survey to be modified
+    :type survey: Survey
+    :param name: the new name of a survey
+    :type name: int
+    :param question_count: number of questions
+    :type question_count: int
+    :param meta: other information (started_on, ends_on, is_active)
+=======
     :param survey: The survey to be modified
     :type survey: Survey
     :param name: The new name of a survey
@@ -548,6 +682,7 @@ def set_survey_meta(survey: Survey, name: str, question_count: int, meta: dict):
     :param question_count: Number of questions
     :type question_count: int
     :param meta: Other information (started_on, ends_on, is_active)
+>>>>>>> e6207cf96c138864709b120dd80ba62954c02a92
     :type meta: dict
     """
 
@@ -1013,6 +1148,7 @@ def csv_to_db(survey: Survey, filename: str, defaults: dict = {}):
 
         df.to_sql("data", conn, if_exists="replace")
         print(f"Database for survey {survey.id} created succesfully")
+        logger.info(f"Database for survey {survey.id} created successfully")
         conn.close()
         return True
     except sqlite3.Error as err:
