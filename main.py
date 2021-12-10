@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 
-from flask import send_from_directory, redirect, url_for, request, session, g, render_template
+from flask import send_from_directory, redirect, url_for, request, session, g, render_template, send_file
+from os.path import exists
 from globals import *
 import json
 import os
 import functools
 import threading
 import database
+import convert
 import grammar
 import daemon
 import table
@@ -60,7 +62,7 @@ def get_all_users():
 @for_roles('s')
 def create_user():
     data = request.json
-    user = database.create_user(data["casLogin"],data['pesel'], data["role"])
+    user = database.create_user(data["casLogin"], data['pesel'], data["role"])
     return {"id": user.id}
 
 
@@ -131,13 +133,42 @@ def upload_survey(survey_id):
         raise error.API('empty survey data')
 
     file = request.files['file']
-    name, ext = file.filename.rsplit('.', 1)
-    # if ext.lower() != 'xml':
-    #     raise error.API('expected a XML file')
     file.save(f'survey/{survey_id}.xml')
     return {
         "id": survey_id
     }
+
+
+@app.route('/api/survey/<int:survey_id>/download/csv', methods=['GET'])
+@on_errors('could not download survey csv')
+@for_roles('s', 'u')
+def download_survey_csv(survey_id):
+    survey = database.get_survey(survey_id)
+    user = database.get_user()
+    perm = database.get_report_permission(survey, user)
+    if perm not in ['r', 'w', 'o']:
+        raise error.API('no access to the survey')
+
+    if not exists(f'raw/{survey_id}.csv'):
+        raise error.API(f'file raw/{survey_id}.csv does not exists')
+
+    return send_file(f'raw/{survey_id}.csv', as_attachment=True)
+
+
+@app.route('/api/survey/<int:survey_id>/download/xml', methods=['GET'])
+@on_errors('could not download survey xml')
+@for_roles('s', 'u')
+def download_survey_xml(survey_id):
+    survey = database.get_survey(survey_id)
+    user = database.get_user()
+    perm = database.get_report_permission(survey, user)
+    if perm not in ['r', 'w', 'o']:
+        raise error.API('no access to the survey')
+
+    if not exists(f'survey/{survey_id}.xml'):
+        raise error.API(f'file survey/{survey_id}.xml does not exists')
+
+    return send_file(f'survey/{survey_id}.xml', as_attachment=True)
 
 
 @app.route('/api/survey/<int:survey_id>/share', methods=['POST'])
@@ -231,6 +262,22 @@ def create_report():
     return {
         "reportId": report.id
     }
+
+
+@app.route('/api/report/<int:report_id>/download', methods=['GET'])
+@on_errors('could not download report')
+@for_roles('s', 'u')
+def download_report(report_id):
+    report = database.get_report(report_id)
+    user = database.get_user()
+    perm = database.get_report_permission(report, user)
+    if perm not in ['r', 'w', 'o']:
+        raise error.API('no access to the report')
+
+    if not exists(f'report/{report_id}.json'):
+        raise error.API(f'file report/{report_id}.json does not exists')
+
+    return send_file(f'report/{report_id}.json', as_attachment=True)
 
 
 @app.route('/api/report/<int:report_id>/users', methods=['GET'])
@@ -521,14 +568,14 @@ def upload_results(survey_id):
 
     if survey_id:
         survey = database.get_survey(survey_id)
-        defaults = database.get_default_values(survey)
+        defaults = convert.get_default_values(survey)
     else:
         survey = database.create_survey(user, name)
         defaults = {}
 
     file.save(f"raw/{survey.id}.{ext}")
 
-    database.csv_to_db(survey, f"{survey.id}.{ext}", defaults)
+    convert.csv_to_db(survey, f"{survey.id}.{ext}", defaults)
     conn = database.open_survey(survey)
     survey.QuestionCount = len(database.get_columns(conn))
     conn.close()
