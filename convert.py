@@ -1,6 +1,6 @@
 from typing import Dict
-from pandas import read_csv, read_excel
-from globals import *
+from pandas import read_csv, read_excel, read_sql_query
+from pathlib import Path
 import xml.etree.ElementTree as ET
 import database
 import sqlite3
@@ -99,9 +99,9 @@ def csv_to_db(survey: database.Survey, filename: str, defaults: dict = {}):
         for column in df.filter(regex="czas wypełniania").columns:
             df.drop(column, axis=1, inplace=True)
 
-        defValues = get_default_values(survey)
+        def_values = get_default_values(survey)
         columns = df.columns.values
-        for k,v in defValues.items():
+        for k,v in def_values.items():
             for c in columns:
                 if re.search(k,c):
                     df[c] = df[c].replace([int(x) for x in v], 9999)
@@ -124,3 +124,20 @@ def csv_to_db(survey: database.Survey, filename: str, defaults: dict = {}):
         return err
     except Exception as e:
         raise error.API(str(e) + ' while parsing csv/xlsx')
+
+
+def db_to_csv(survey: database.Survey):
+    """Convert db data to csv and write csv file into temp directory
+
+    :param survey: The Survey
+    :type survey: Survey
+    """
+
+    try:
+        conn = database.open_survey(survey)
+        df = read_sql_query("SELECT * FROM data", conn, index_col='index')
+        Path("temp").mkdir(parents=True, exist_ok=True)
+        df.to_csv(f"temp/{survey.id}.csv", encoding='utf-8', index=False)
+        conn.close()
+    except Exception as e:
+        raise error.API(str(e) + ' while parsing db to csv')
