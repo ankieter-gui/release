@@ -156,7 +156,7 @@ def raw_to_compact(survey: database.Survey, df: pandas.DataFrame, defaults: Dict
 
     # Get all column names which are not in 'repeats', these are base names
     # of every column
-    uniques = [c for c in columns if c not in repeats]
+    uniques = [c for c in df.columns.values if c not in repeats]
 
     # Now join repeated columns into one named by their base names
     for u in uniques:

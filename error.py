@@ -25,7 +25,7 @@ class API(Generic):
         returns dict object
         """
 
-        err = {**data}
+        err = {**self.data}
         err['error'] = self.message
         print(err)
         return err
