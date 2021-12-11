@@ -1,12 +1,61 @@
 from typing import Dict
-from pandas import read_csv, read_excel, read_sql_query
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import database
 import sqlite3
+import pandas
 import error
 import csv
 import re
+
+def antimode(vals: pandas.Series):
+    """Return one of the rarest of the values in a series.
+
+    :param vals: The series
+    :type vals: pandas.Series
+    :return: One of the rarest values
+    """
+
+    counts = {}
+    for v in vals:
+        c = counts.get(v, 0)
+        counts[v] = c+1
+    if len(counts) == 0:
+        return None
+    return min(counts, key=counts.get)
+
+
+def nodefaults(defaults: Dict, name: str):
+    """Creates a pandas row aggregator that skips default column values and
+    leaves a value from the first column with a non-default. It's used when
+    a few columns represent the same variable, in that case the value chosen
+    by the user is saved in one column, and the others contain defaults.
+    Such a group of columns can be joined into one columns with a use of
+    aggregator functions returned by this function.
+
+    :param defaults: Default column values as returned from get_default_values
+    :type defaults: Dict
+    :param name: A name of the group of columns column to be aggregated
+    :type name: str
+    :return: A pandas row aggregator
+    :rtype: function
+    """
+
+    def f(vals):
+        # Excluding this case noticeably speeds up processing
+        if len(vals) == 1:
+            return vals[0]
+
+        if name not in defaults:
+            return antimode(vals)
+
+        for v in vals:
+            if str(v) not in defaults[name]:
+                return v
+
+        # if no result could be chosen, return the value from the first column
+        return vals[0]
+    return f
 
 
 def get_default_values(survey: database.Survey) -> Dict:
@@ -14,7 +63,7 @@ def get_default_values(survey: database.Survey) -> Dict:
 
     :param survey: The survey
     :type survey: Survey
-    :return: A dict from question name to a set of its defaults
+    :return: A dict from question names to a set of its defaults
     :rtype: Dict
     """
 
@@ -50,7 +99,47 @@ def detect_csv_sep(filename: str) -> str:
     return sep
 
 
-def csv_to_db(survey: database.Survey, filename: str, defaults: dict = {}):
+def raw_to_compact(survey: database.Survey, df: pandas.DataFrame, defaults: Dict = {}) -> pandas.DataFrame:
+    """Convert a raw Ankieter DataFrame into a compact format suitable for
+    data analysis. The change is mainly about joining separate columns that
+    in fact represent the same question.
+
+    :param survey: Survey object for which the data was gathered
+    :type survey: database.Survey
+    :param df: DataFrame containing the raw data
+    :type df: pandas.DataFrame
+    :param defaults: A dict with default values set for each column name
+    :type defaults: Dict
+    :return: The compacted data
+    :rtype: pandas.DataFrame
+    """
+
+    # Get all columns with \.\d+ prefixes, this is how Pandas marks repeated
+    # column names
+    repeats = df.filter(regex=r'\.\d+$').columns.values
+
+    # Get all column names which are not in 'repeats', these are base names
+    # of every column
+    uniques = [c for c in columns if c not in repeats]
+
+    # Now join repeated columns into one named by their base names
+    for u in uniques:
+        esc = re.escape(u)
+        group = list(df.filter(regex=esc+'\.\d+$').columns.values)
+        group.append(u)
+        df[u] = df[group].aggregate(nodefaults(defaults, u), axis='columns')
+        df = df.drop(group[:-1], axis='columns')
+
+    # Convert all remaining defaults to the standard 9999
+    for k, v in defaults.items():
+        for c in df.columns.values:
+            if re.search(k, c):
+                df[c] = df[c].replace([int(x) for x in v], 9999)
+
+    return df
+
+
+def csv_to_db(survey: database.Survey, filename: str, defaults: Dict = {}):
     """Read the source CSV file and save it to a new database
 
     :param survey: The Survey
@@ -61,63 +150,27 @@ def csv_to_db(survey: database.Survey, filename: str, defaults: dict = {}):
     :type defaults: Dict
     """
 
-    def shame(vals):
-        counts = {}
-        for v in vals:
-            c = counts.get(v, 0)
-            counts[v] = c+1
-        if len(counts) == 0:
-            return None
-        return min(counts, key=counts.get)
-
-    def nodefaults(group):
-        def f(vals):
-            # Excluding this case noticeably speeds up processing
-            if len(vals) == 1:
-                return vals[0]
-
-            if group not in defaults:
-                return shame(vals)
-
-            for v in vals:
-                if str(v) not in defaults[group]:
-                    return v
-            return vals[0]
-        return f
-
     try:
         conn = database.open_survey(survey)
         name, ext = filename.rsplit('.', 1)
         if ext != "csv":
-            file = read_excel(f'raw/{name}.{ext}')
+            file = pandas.read_excel(f'raw/{name}.{ext}')
             file.to_csv(f'raw/{name}.csv',encoding='utf-8')
             filename = f'{name}.csv'
         separator = detect_csv_sep(filename)
-        df = read_csv(f"raw/{filename}", sep=separator)
+        df = pandas.read_csv(f"raw/{filename}", sep=separator)
+
+        # remove XML tags in question names
         df.columns = df.columns.str.replace('</?\w[^>]*>', '', regex=True)
 
+        # remove all "czas wypełniania" columns
         for column in df.filter(regex="czas wypełniania").columns:
             df.drop(column, axis=1, inplace=True)
 
-        def_values = get_default_values(survey)
-        columns = df.columns.values
-        for k,v in def_values.items():
-            for c in columns:
-                if re.search(k,c):
-                    df[c] = df[c].replace([int(x) for x in v], 9999)
-
-        repeats = df.filter(regex=r'\.\d+$').columns.values
-        uniques = [c for c in columns if c not in repeats]
-
-        for u in uniques:
-            esc = re.escape(u)
-            group = list(df.filter(regex=esc+'\.\d+$').columns.values)
-            group.append(u)
-            df[u] = df[group].aggregate(nodefaults(u), axis='columns')
-            df = df.drop(group[:-1], axis='columns')
+        # convert the data to a format suitable for data analysis
+        df = raw_to_compact(survey, df, defaults)
 
         df.to_sql("data", conn, if_exists="replace")
-        print(f"Database for survey {survey.id} created succesfully")
         conn.close()
         return True
     except sqlite3.Error as err:
@@ -135,7 +188,7 @@ def db_to_csv(survey: database.Survey):
 
     try:
         conn = database.open_survey(survey)
-        df = read_sql_query("SELECT * FROM data", conn, index_col='index')
+        df = pandas.read_sql_query("SELECT * FROM data", conn, index_col='index')
         Path("temp").mkdir(parents=True, exist_ok=True)
         df.to_csv(f"temp/{survey.id}.csv", encoding='utf-8', index=False)
         conn.close()
