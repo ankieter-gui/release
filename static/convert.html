@@ -228,12 +228,33 @@
 </dd></dl>
 
 <dl class="py function">
+<dt id="convert.get_column_mismatches">
+<code class="sig-prename descclassname">convert.</code><code class="sig-name descname">get_column_mismatches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">df</span><span class="p">:</span> <span class="n">pandas.core.frame.DataFrame</span></em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#convert.get_column_mismatches" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check which columns in the schema are not present in the data, and also
+which columns in the data are not present in the schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>database.Survey</em></a>) – Survey object for which the data was gathered</p></li>
+<li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the compacted data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A pair of lists of columns that the data lacks, and the extra ones</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="convert.get_default_values">
 <code class="sig-prename descclassname">convert.</code><code class="sig-name descname">get_default_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#convert.get_default_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get default value string for every question in the survey database</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The survey</p>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>database.Survey</em></a>) – The survey</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>A dict from question names to a set of its defaults</p>
