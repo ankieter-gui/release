@@ -91,6 +91,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../modules.html#dla-administratora">Dla administratora</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html#dla-programisty">Dla programisty</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Wstęp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jak-dodac-nowy-wykres">Jak dodać nowy wykres?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tutorial">Tutorial</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../convert.html">convert module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../database.html">database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../error.html">error module</a></li>
@@ -171,6 +175,81 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="wstep">
 <h1>Wstęp<a class="headerlink" href="#wstep" title="Permalink to this headline">¶</a></h1>
 <p>W poniższym rozdziale przedstawiono dokumentację modułów wykorzystywanych na serwerze.</p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="jak-dodac-nowy-wykres">
+<h1>Jak dodać nowy wykres?<a class="headerlink" href="#jak-dodac-nowy-wykres" title="Permalink to this headline">¶</a></h1>
+<p>Wykresy są generowane za pomocą biblioteki apache echarts [https://echarts.apache.org/]. Aby dodać nowy wykres, najłatwiej odwiedzić stronę z przykładami [https://echarts.apache.org/examples/en/index.html] i poszukać wykresu zbliżonego. Po wejściu na jego podstronę można eksperymentować, dostosowując interaktywnie różne opcje. Gdy stworzymy już konfigurację taką jaką chcemy, możemy przejść do integracji nowego wykresu do aplikacji. Zapisz gdzieś obiekt JSON options do użycia później.</p>
+<p>Tworzenie wykresu jest kilkuetapowe - najpierw dane do serwowane do klasy generującej <code class="docutils literal notranslate"><span class="pre">options</span></code> - obiekt JSONa, następnie jest on ponowanie modyfikowany przez <code class="docutils literal notranslate"><span class="pre">ColorsGenerator</span></code>. Pełny proces generowania nowego wykresu jest zawarty w <code class="docutils literal notranslate"> <span class="pre">generateChart(series:</span> <span class="pre">any,</span> <span class="pre">chartElement:</span> <span class="pre">ChartReportElement,</span> <span class="pre">reportId,</span> <span class="pre">namingDictioanry,</span> <span class="pre">dictionaryOverrides,</span> <span class="pre">localOverrides</span> <span class="pre">=</span> <span class="pre">undefined,fullQuery=undefined):</span> <span class="pre">EChartsOption</span></code> w pliku <code class="docutils literal notranslate"><span class="pre">charts.service.ts</span></code>.</p>
+<p>Klasa generująca <code class="docutils literal notranslate"><span class="pre">options</span></code> musi dziedziczyć po <code class="docutils literal notranslate"><span class="pre">AbstractChartGenerator</span></code>. Każda taka klasa pochodna musi zostać także zarejestrowana w funkcji: <code class="docutils literal notranslate"><span class="pre">getGenerator</span></code> w <code class="docutils literal notranslate"><span class="pre">charts.service.ts</span></code> przez dopisanie do słownika <code class="docutils literal notranslate"><span class="pre">strategyType</span></code> nowododanej klasy jako wartość. Kluczem niech będzie krótka nazwa <code class="docutils literal notranslate"><span class="pre">string</span></code> używana do identyfikacji klasy. Taki słownik jest workaroundem bo przez niektóre ograniczenia Angulara nie można podać klasy jako first class object w template komponentu.</p>
+<div class="section" id="tutorial">
+<h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Tworzymy nowy plik o nazwie MyChart.ts.</p></li>
+<li><p>Wklejamy tam szablon klasy generującej <code class="docutils literal notranslate"><span class="pre">options</span></code> wykresu</p></li>
+</ol>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span> <span class="kd">class</span> <span class="nx">MyChartGenerator</span> <span class="k">extends</span> <span class="nx">AbstractChartGenerator</span> <span class="p">{</span>
+
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">series</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">chartElement</span>: <span class="kt">ChartReportElement</span><span class="p">,</span> <span class="nx">namingDictionary</span><span class="p">,</span> <span class="k">public</span> <span class="nx">reportsService</span>: <span class="kt">ReportsService</span><span class="p">,</span> <span class="nx">dictionaryOverrides</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">series</span><span class="p">,</span> <span class="nx">chartElement</span><span class="p">,</span> <span class="nx">namingDictionary</span><span class="p">,</span> <span class="nx">reportsService</span><span class="p">,</span> <span class="nx">dictionaryOverrides</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">generate</span><span class="p">()</span><span class="o">:</span> <span class="nx">AbstractChartGenerator</span> <span class="p">{</span>
+
+      <span class="k">return</span> <span class="k">this</span>
+  <span class="p">}</span>
+
+  <span class="nx">getAllCount</span><span class="p">(</span><span class="nx">reportId</span><span class="p">,</span> <span class="nx">complimentedQuery</span>: <span class="kt">SurveyQuery</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+
+  <span class="nx">asJSONConfig</span><span class="p">()</span><span class="o">:</span> <span class="nx">EChartsOption</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{}</span> <span class="kr">as</span> <span class="nx">EChartsOption</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">generate()</span></code> jest wywoływane jednorazowo przy każdej zmianie ustawień wykresu w UI przez użytkownika. <code class="docutils literal notranslate"><span class="pre">asJSONConfig()</span></code> zwraca <code class="docutils literal notranslate"><span class="pre">options</span></code> wykresu. Należy wkleić to co wygenerowaliśmy w kreatorze na stronie echarts z dodatkowym uzupełnieniem o serie danych.
+Serie danych pochodzą bezośrednio z response z serwera i są dostępne pod <code class="docutils literal notranslate"><span class="pre">this.rawSeries</span></code></p>
+<ol class="simple">
+<li><p>Wybieramy tekstowy identyfikator klasy - może to być jej nazwa zapisana w klasie jako <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">&quot;MyChart&quot;</span></code></p></li>
+<li><p>Otwieramy plik <code class="docutils literal notranslate"><span class="pre">reports/editor/chart-editor-view.component.ts</span></code></p></li>
+<li><p>Szykujemy obrazek-miniaturkę wykresu i umieszczamy ją w <code class="docutils literal notranslate"><span class="pre">assets/</span></code></p></li>
+<li><p>W <code class="docutils literal notranslate"><span class="pre">reports/editor/chart-editor-view.component.ts</span></code> ctrl+f <code class="docutils literal notranslate"> <span class="pre">&lt;nz-tab</span> <span class="pre">nzTitle=&quot;Wygląd</span> <span class="pre">i</span> <span class="pre">układ&quot;&gt;</span></code>  <br>
+W elemencie <code class="docutils literal notranslate"><span class="pre">&lt;section</span> <span class="pre">class=&quot;query-marker&quot;&gt;&lt;/section&gt;</span></code> dodajemy markup <br></p></li>
+</ol>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;spacer&quot;&gt;&lt;/div&gt;
+&lt;figure class=&quot;indicator-card indicator-card-velvet preset&quot;
+       nz-tooltip=&quot;Użyj tego wykresu aby przedstawić wyniki z pytań wielokrotnego wyboru. Na przykład: dlaczego poleciłbyś UAM&quot;
+       (click)=&quot;pickPreset(&#39;multipleChoice&#39;);&quot;&gt;
+ &lt;div class=&quot;indicator-card-inner&quot;&gt;
+   &lt;div class=&quot;indicator-card-header&quot;&gt;Wielokrotny wybór&lt;/div&gt;
+   &lt;div class=&quot;indicator-card-content&quot;&gt;&lt;img src=&quot;./assets/preset2.png&quot; style=&quot;width: 100%&quot;&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/figure&gt;             
+</pre></div>
+</div>
+<p>Do uzupełniania: tooltip, miniaturka, nazwa i <code class="docutils literal notranslate"><span class="pre">(click)=&quot;pickPreset('MyChart');&quot;</span></code>,  gdzie MyChart to nazwa naszego nowego wykresu identyczną z ustaloną wcześniej.</p>
+<ol class="simple">
+<li><p>Do funkcji pickPreset w tym samym pliku dopisujemy klucz do słownika <code class="docutils literal notranslate"><span class="pre">fun</span></code>.
+<br> Wartością jest funkcja bez argumentów która ustawia różne parametry charakterystyczne dla tego rodzaju wykresu i sposób w jaki układane jest zapytanie do bazy danych. <br>
+Możemy schować prawą kolumnę <code class="docutils literal notranslate"><span class="pre">Grupuj</span> <span class="pre">przez</span></code> ustawiając <code class="docutils literal notranslate"><span class="pre">this.hideGrupBy=true;</span></code>, schować panel wybierania rodzajów agregeacji <code class="docutils literal notranslate"> <span class="pre">this.hideData=true;</span></code>. <br>
+Zmienić zachowania po kliknięciu jakiegoś elementu interfejsu: ..
+<code class="docutils literal notranslate"><span class="pre">this.onPickQuestion=(question)=&gt;{}</span></code>
+<code class="docutils literal notranslate"><span class="pre">this.byPickerClick</span> <span class="pre">=</span> <span class="pre">(by)</span> <span class="pre">=&gt;</span> <span class="pre">{}</span></code> <br>
+Ustawić domyślny typ agregacji: <code class="docutils literal notranslate">&#160; <span class="pre">this.chartData.dataQuery.as[0]='share'</span></code> <br>
+Ustawić domyślny typ grupowania <code class="docutils literal notranslate"> <span class="pre">this.chartData.dataQuery.by[0]</span> <span class="pre">=</span> <span class="pre">&quot;*&quot;</span></code> <br>
+Lub zrobić cokolwiek innego co jest potrzebne aby umożliwić użytkownikowi wybranie wszystkich potrzebnych opcji.</p></li>
+<li><p>Teraz należy wyświetlić gotowy wykres. Do fragmentu <code class="docutils literal notranslate">&#160; <span class="pre">&lt;section</span> <span class="pre">class=&quot;chart-area&quot;</span> <span class="pre">*ngIf=&quot;['multipleChoice',</span> <span class="pre">'groupedBars',</span> <span class="pre">'multipleBars',</span> <span class="pre">'linearCustomData',</span> <span class="pre">'summary','groupSummary',</span> <span class="pre">'multipleBarsOwnData'].includes(chartData.config.type)</span>&#160; <span class="pre">&amp;&amp;</span> <span class="pre">this.echartOptions&quot;&gt;</span></code> należy dopisać nasz typ wykresu żeby się wyświetlał w domyślnym trybie - jako prosty wykres generowany na podstawie <code class="docutils literal notranslate"><span class="pre">options</span></code></p></li>
+<li><p>(Opcjonalnie) Ostatnią czynnością jest kolorowanie wykresu. W <code class="docutils literal notranslate"><span class="pre">ColorsGenerator.ts</span></code> dodajemy do słownika x nowy wpis <code class="docutils literal notranslate"><span class="pre">[MyChartGenerator.name]</span> <span class="pre">=</span> <span class="pre">(o)</span> <span class="pre">=&gt;</span> <span class="pre">this.myChartGenerator(o);</span></code>
+oraz nową funkcję do klasy <br></p></li>
+</ol>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="nx">myChartGenerator</span><span class="p">(</span><span class="nx">options</span>: <span class="kt">EChartsOption</span><span class="p">)</span><span class="o">:</span> <span class="nx">EChartsOption</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">options</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>która modyfikuje i zwraca obiekt options w celu nadania kolorów i kosmetyki konkretnym seriom lub elementom. <br>
+Jeżeli nie jest to potrzebne można nic nie dodawać.</p>
+</div>
 </div>
 
 

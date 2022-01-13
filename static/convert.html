@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-administratora">Dla administratora</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html#dla-programisty">Dla programisty</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html">Wstęp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html#jak-dodac-nowy-wykres">Jak dodać nowy wykres?</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">convert module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="error.html">error module</a></li>
@@ -268,7 +269,16 @@ which columns in the data are not present in the schema.</p>
 <dl class="py function">
 <dt id="convert.json_to_xml">
 <code class="sig-prename descclassname">convert.</code><code class="sig-name descname">json_to_xml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey">database.Survey</a></span></em>, <em class="sig-param"><span class="n">survey_json</span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.json_to_xml" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Convert survey from JSON format to Ankieter xml format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey that is edited or created</p></li>
+<li><p><strong>survey_json</strong> (<em>Dict</em>) – Survey JSON to be converted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="convert.nodefaults">
@@ -321,7 +331,19 @@ in fact represent the same question.</p>
 <dl class="py function">
 <dt id="convert.xml_to_json">
 <code class="sig-prename descclassname">convert.</code><code class="sig-name descname">xml_to_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">survey</span><span class="p">:</span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey">database.Survey</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.xml_to_json" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Convert survey from Ankieter xml format to json format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey that is edited or created</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The survey in json format</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 
