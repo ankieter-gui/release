@@ -54,6 +54,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../grammar.html">grammar module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../setup.html">setup module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../table.html">table module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../main.html">main module</a></li>
 </ul>
 </li>
 </ul>
@@ -94,14 +95,14 @@
 <p>Klasa generująca <code class="docutils literal notranslate"><span class="pre">options</span></code> musi dziedziczyć po <code class="docutils literal notranslate"><span class="pre">AbstractChartGenerator</span></code>. Każda taka klasa pochodna musi zostać także zarejestrowana w funkcji: <code class="docutils literal notranslate"><span class="pre">getGenerator</span></code> w <code class="docutils literal notranslate"><span class="pre">charts.service.ts</span></code> przez dopisanie do słownika <code class="docutils literal notranslate"><span class="pre">strategyType</span></code> nowododanej klasy jako wartość. Kluczem niech będzie krótka nazwa <code class="docutils literal notranslate"><span class="pre">string</span></code> używana do identyfikacji klasy. Taki słownik jest workaroundem bo przez niektóre ograniczenia Angulara nie można podać klasy jako first class object w template komponentu.</p>
 <section id="tutorial">
 <h2>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline"></a></h2>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Tworzymy nowy plik o nazwie MyChart.ts.</p></li>
 <li><p>Wklejamy tam szablon klasy generującej <code class="docutils literal notranslate"><span class="pre">options</span></code> wykresu</p></li>
 </ol>
-<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span> <span class="kd">class</span> <span class="nx">MyChartGenerator</span> <span class="k">extends</span> <span class="nx">AbstractChartGenerator</span> <span class="p">{</span>
+<div class="highlight-typescript notranslate"><div class="highlight"><pre><span></span><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyChartGenerator</span> <span class="kr">extends</span> <span class="nx">AbstractChartGenerator</span> <span class="p">{</span>
 
-  <span class="kr">constructor</span><span class="p">(</span><span class="nx">series</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">chartElement</span>: <span class="kt">ChartReportElement</span><span class="p">,</span> <span class="nx">namingDictionary</span><span class="p">,</span> <span class="k">public</span> <span class="nx">reportsService</span>: <span class="kt">ReportsService</span><span class="p">,</span> <span class="nx">dictionaryOverrides</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">(</span><span class="nx">series</span><span class="p">,</span> <span class="nx">chartElement</span><span class="p">,</span> <span class="nx">namingDictionary</span><span class="p">,</span> <span class="nx">reportsService</span><span class="p">,</span> <span class="nx">dictionaryOverrides</span><span class="p">);</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">series</span>: <span class="kt">any</span><span class="p">,</span> <span class="nx">chartElement</span>: <span class="kt">ChartReportElement</span><span class="p">,</span> <span class="nx">namingDictionary</span><span class="p">,</span> <span class="kr">public</span> <span class="nx">reportsService</span>: <span class="kt">ReportsService</span><span class="p">,</span> <span class="nx">dictionaryOverrides</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">series</span><span class="p">,</span> <span class="nx">chartElement</span><span class="p">,</span> <span class="nx">namingDictionary</span><span class="p">,</span> <span class="nx">reportsService</span><span class="p">,</span> <span class="nx">dictionaryOverrides</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="nx">generate</span><span class="p">()</span><span class="o">:</span> <span class="nx">AbstractChartGenerator</span> <span class="p">{</span>
@@ -120,7 +121,7 @@
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">generate()</span></code> jest wywoływane jednorazowo przy każdej zmianie ustawień wykresu w UI przez użytkownika. <code class="docutils literal notranslate"><span class="pre">asJSONConfig()</span></code> zwraca <code class="docutils literal notranslate"><span class="pre">options</span></code> wykresu. Należy wkleić to co wygenerowaliśmy w kreatorze na stronie echarts z dodatkowym uzupełnieniem o serie danych.
 Serie danych pochodzą bezośrednio z response z serwera i są dostępne pod <code class="docutils literal notranslate"><span class="pre">this.rawSeries</span></code></p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Wybieramy tekstowy identyfikator klasy - może to być jej nazwa zapisana w klasie jako <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">&quot;MyChart&quot;</span></code></p></li>
 <li><p>Otwieramy plik <code class="docutils literal notranslate"><span class="pre">reports/editor/chart-editor-view.component.ts</span></code></p></li>
 <li><p>Szykujemy obrazek-miniaturkę wykresu i umieszczamy ją w <code class="docutils literal notranslate"><span class="pre">assets/</span></code></p></li>
@@ -139,7 +140,7 @@ W elemencie <code class="docutils literal notranslate"><span class="pre">&lt;sec
 </pre></div>
 </div>
 <p>Do uzupełniania: tooltip, miniaturka, nazwa i <code class="docutils literal notranslate"><span class="pre">(click)=&quot;pickPreset('MyChart');&quot;</span></code>,  gdzie MyChart to nazwa naszego nowego wykresu identyczną z ustaloną wcześniej.</p>
-<ol class="arabic simple">
+<ol class="simple">
 <li><p>Do funkcji pickPreset w tym samym pliku dopisujemy klucz do słownika <code class="docutils literal notranslate"><span class="pre">fun</span></code>.
 <br> Wartością jest funkcja bez argumentów która ustawia różne parametry charakterystyczne dla tego rodzaju wykresu i sposób w jaki układane jest zapytanie do bazy danych. <br>
 Możemy schować prawą kolumnę <code class="docutils literal notranslate"><span class="pre">Grupuj</span> <span class="pre">przez</span></code> ustawiając <code class="docutils literal notranslate"><span class="pre">this.hideGrupBy=true;</span></code>, schować panel wybierania rodzajów agregeacji <code class="docutils literal notranslate"> <span class="pre">this.hideData=true;</span></code>. <br>

@@ -51,6 +51,7 @@
 <li class="toctree-l2"><a class="reference internal" href="grammar.html">grammar module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="table.html">table module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 </li>
 </ul>
@@ -84,7 +85,7 @@
 <span id="error-module"></span><h1>error module<a class="headerlink" href="#module-error" title="Permalink to this headline"></a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="error.API">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">error.</span></span><span class="sig-name descname"><span class="pre">API</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#error.API" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">error.</span></span><span class="sig-name descname"><span class="pre">API</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#error.API" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#error.Generic" title="error.Generic"><code class="xref py py-class docutils literal notranslate"><span class="pre">error.Generic</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="error.API.as_dict">
@@ -98,11 +99,11 @@ returns dict object</p>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="error.Generic">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">error.</span></span><span class="sig-name descname"><span class="pre">Generic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#error.Generic" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">exception</span> </em><span class="sig-prename descclassname"><span class="pre">error.</span></span><span class="sig-name descname"><span class="pre">Generic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#error.Generic" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="error.Generic.add_details">
-<span class="sig-name descname"><span class="pre">add_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#error.Generic.add_details" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#error.Generic.add_details" title="Permalink to this definition"></a></dt>
 <dd><p>Add details to the error message.</p>
 <p>Keyword arguments:
 message – details to be concatenated</p>
