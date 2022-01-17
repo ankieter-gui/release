@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>main module &mdash; Ankieter+  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="table module" href="table.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Ankieter+
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Wstęp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#dla-uzytkownika">Dla użytkownika</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html#dla-administratora">Dla administratora</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html#dla-programisty">Dla programisty</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html">Wstęp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html#jak-dodac-nowy-wykres">Jak dodać nowy wykres?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="convert.html">convert module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database.html">database module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error.html">error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grammar.html">grammar module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">table module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">main module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Ankieter+</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">Wstęp</a> &raquo;</li>
+      <li>main module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/main.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-main">
+<span id="main-module"></span><h1>main module<a class="headerlink" href="#module-main" title="Permalink to this headline"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="main.copy_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">copy_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.copy_report" title="Permalink to this definition"></a></dt>
+<dd><p>Create new duplicated report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/copy</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“reportId”: report.id}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.create_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">create_report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.create_report" title="Permalink to this definition"></a></dt>
+<dd><p>Create report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/new</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{“reportId”: report.id}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.create_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">create_survey</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.create_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Create survey</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/new</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{“id”: survey_id}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.create_user">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">create_user</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.create_user" title="Permalink to this definition"></a></dt>
+<dd><p>Create a new user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/user/new</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+<dt class="field-odd">Return parameters</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>id</strong> (<em>int</em>) – user id</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.debug_login">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">debug_login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.debug_login" title="Permalink to this definition"></a></dt>
+<dd><p>Login in debug mode without cas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/login/&lt;string:username&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – cas login</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.delete_group">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">delete_group</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.delete_group" title="Permalink to this definition"></a></dt>
+<dd><p>Delete group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/dashboard</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>DELETE</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{‘message’: ‘group deleted’}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.delete_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">delete_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.delete_report" title="Permalink to this definition"></a></dt>
+<dd><p>Delete report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>DELETE</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{‘message’: ‘report has been deleted’,’reportId’: report_id}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.delete_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">delete_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.delete_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Get dashboard for user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>DELETE</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{‘message’: ‘survey has been deleted’,’surveyId’: survey_id}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.delete_user">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">delete_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.delete_user" title="Permalink to this definition"></a></dt>
+<dd><p>Delete user from Users database and their permissions
+from SurveyPermissions and ReportPermissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/user/&lt;int:user_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>DELETE</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>user_id</strong> – user id</p>
+</dd>
+<dt class="field-odd">Return dict</dt>
+<dd class="field-odd"><p>{“delete”: user_id}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.download_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">download_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.download_report" title="Permalink to this definition"></a></dt>
+<dd><p>Download report as json</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/download</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>json file</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>File</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.download_survey_csv">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">download_survey_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.download_survey_csv" title="Permalink to this definition"></a></dt>
+<dd><p>Download survey csv</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/data/&lt;int:survey_id&gt;/download</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Survey csv data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>File</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.download_survey_xml">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">download_survey_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.download_survey_xml" title="Permalink to this definition"></a></dt>
+<dd><p>Get survey schema xml</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;/download</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>xml file witch survey schema</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>File</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.for_roles">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">for_roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">roles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.for_roles" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_all_users">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_all_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.get_all_users" title="Permalink to this definition"></a></dt>
+<dd><p>Get all users</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/user/all, /api/users</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+<dt class="field-odd">Return</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>casLogin</strong> (<em>str</em>) – cas login</p></li>
+<li><p><strong>id:</strong> (<em>int</em>) – user id</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_bkg">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_bkg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_bkg" title="Permalink to this definition"></a></dt>
+<dd><p>Get background image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/bkg/&lt;path:path&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – path to the image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_dashboard">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_dashboard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.get_dashboard" title="Permalink to this definition"></a></dt>
+<dd><p>Get dashboard for user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/dashboard</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+<dt class="field-odd">Return</dt>
+<dd class="field-odd"><p></p></dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>answersCount</strong> (<em>int</em>) – number of survey answers,</p></li>
+<li><p><strong>startedOn</strong> (<em>timestamp</em>) – date when survey started</p></li>
+<li><p><strong>endsOn</strong> (<em>timestamp</em>) – date when survey ended,</p></li>
+<li><p><strong>authorId</strong> (<em>int</em>) – author’s user_id,</p></li>
+<li><p><strong>authorName</strong> (<em>str</em>) – author’s name,</p></li>
+<li><p><strong>backgroundImg</strong> (<em>str</em>) – filename of a background image,</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – survey/report id,</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – survey/report name,</p></li>
+<li><p><strong>sharedTo</strong> (<em>dict</em>) – {user_id: permission_type}</p></li>
+<li><p><strong>type</strong> (<em>string</em>) – object type (survey/report)</p></li>
+<li><p><strong>userId</strong> (<em>int</em>) – logged user id</p></li>
+<li><p><strong>connectedSurvey</strong> (<em>dict</em>) – {survey_id: survey_name}</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_data">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_data" title="Permalink to this definition"></a></dt>
+<dd><p>Get survey data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/data/&lt;int:survey_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_data_types">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_data_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_data_types" title="Permalink to this definition"></a></dt>
+<dd><p>Get types for each column in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/data/&lt;int:survey_id&gt;/types</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary mapping names of columns to SQL names of their types</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_dictionary">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_dictionary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.get_dictionary" title="Permalink to this definition"></a></dt>
+<dd><p>Returns dictionary with labels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/dictionary</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>id and label</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_docs">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_docs" title="Permalink to this definition"></a></dt>
+<dd><p>Redirect to documentation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/docs</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – filename of docs main page, default index,html</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_group_users">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_group_users</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.get_group_users" title="Permalink to this definition"></a></dt>
+<dd><p>Get users assigned to given group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/group/users</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns dict of user_id</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_groups">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.get_groups" title="Permalink to this definition"></a></dt>
+<dd><p>Get list of groups</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/dashboard</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_questions">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_questions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_questions" title="Permalink to this definition"></a></dt>
+<dd><p>Get column names in the order just like it is returned from the DB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/dashboard</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of column names in the database. {‘questions’: questions}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_report" title="Permalink to this definition"></a></dt>
+<dd><p>Get report data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>report data in json format</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_report_answers">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_report_answers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_report_answers" title="Permalink to this definition"></a></dt>
+<dd><p>Get answers for Report’s survey</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/answers</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Answers in the survey</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_report_data">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_report_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_report_data" title="Permalink to this definition"></a></dt>
+<dd><p>Get data for chart</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/data</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Parsed data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_report_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_report_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_report_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Get survey assigned to the given report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/survey</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“surveyId”: survey.id }</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_report_users">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_report_users</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_report_users" title="Permalink to this definition"></a></dt>
+<dd><p>Get dashboard for user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/users</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Returns a dict with user ids as keys and their permissions under them</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_static_file">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_static_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_static_file" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Get survey json by given id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>survey json</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_user_details">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_user_details</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.get_user_details" title="Permalink to this definition"></a></dt>
+<dd><p>Get logged user details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/user</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>user_id</strong> – user id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>User object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="database.html#database.User" title="database.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_user_groups">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_user_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_user_groups" title="Permalink to this definition"></a></dt>
+<dd><p>Get all user groups with users</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/user/&lt;int:user_id&gt;/group</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>user_id</strong> (<em>int</em>) – user id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List[group_name]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.get_user_id_details">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">get_user_id_details</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.get_user_id_details" title="Permalink to this definition"></a></dt>
+<dd><p>Get user details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/user/&lt;int:user_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>user_id</strong> – user id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>User object</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="database.html#database.User" title="database.User">User</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.index">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.link_to_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">link_to_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.link_to_report" title="Permalink to this definition"></a></dt>
+<dd><p>Create and obtain a permission link for report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/link</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{‘link’: link}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.link_to_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">link_to_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.link_to_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Get permission link to survey</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;/link</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{‘link’: link}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.login">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.login" title="Permalink to this definition"></a></dt>
+<dd><p>Login with cas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/dashboard</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.logout">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">logout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.logout" title="Permalink to this definition"></a></dt>
+<dd><p>Logout</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/logout</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.on_errors">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">on_errors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">details</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.on_errors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.rename_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">rename_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.rename_report" title="Permalink to this definition"></a></dt>
+<dd><p>Rename report</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/rename</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{‘message’: ‘report name has been changed’, ‘reportId’: report.id, ‘title’: new_name}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.rename_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">rename_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.rename_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Rename survey</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;/rename</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{‘message’: ‘survey name has been changed’, ‘surveyId’: survey.id, ‘title’: new_name}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.set_group">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">set_group</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.set_group" title="Permalink to this definition"></a></dt>
+<dd><p>Add users to group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/group/change</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{‘message’: ‘users added to groups’}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.set_permission_link">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">set_permission_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hash</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.set_permission_link" title="Permalink to this definition"></a></dt>
+<dd><p>Set permission using link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/link/&lt;hash&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>GET</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u, g</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>hash</strong> (<em>str</em>) – Salt and id string from the link</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{‘permission’: perm, ‘object’: object,’id’: id,}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.set_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">set_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.set_report" title="Permalink to this definition"></a></dt>
+<dd><p>Save report changes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“reportId”: report.id}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.share_report">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">share_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.share_report" title="Permalink to this definition"></a></dt>
+<dd><p>Share report for given users</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/report/&lt;int:report_id&gt;/share</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>report_id</strong> (<em>int</em>) – Report’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“message”: “permissions added”}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.share_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">share_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.share_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Share survey for given users</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;/share</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“message”: “permissions added”}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.unset_group">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">unset_group</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.unset_group" title="Permalink to this definition"></a></dt>
+<dd><p>Remove users from groups</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/group/change</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>DELETE</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{‘message’: ‘users removed from groups’}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.upload_results">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">upload_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.upload_results" title="Permalink to this definition"></a></dt>
+<dd><p>Upload survey results</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/data/new</p>
+</dd>
+<dt class="field-even">Route</dt>
+<dd class="field-even"><p>/api/data/new/&lt;int:survey_id&gt;</p>
+</dd>
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/data/&lt;int:survey_id&gt;/upload</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“id”: survey.id,”name”: name}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="main.upload_survey">
+<span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">upload_survey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.upload_survey" title="Permalink to this definition"></a></dt>
+<dd><p>Upload survey</p>
+<dl class="field-list simple">
+<dt class="field-odd">Route</dt>
+<dd class="field-odd"><p>/api/survey/&lt;int:survey_id&gt;, /api/survey/&lt;int:survey_id&gt;/upload</p>
+</dd>
+<dt class="field-even">Methods</dt>
+<dd class="field-even"><p>POST</p>
+</dd>
+<dt class="field-odd">Roles</dt>
+<dd class="field-odd"><p>s, u</p>
+</dd>
+<dt class="field-even">Parameters</dt>
+<dd class="field-even"><p><strong>survey_id</strong> (<em>int</em>) – Survey’s id</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>{“id”: survey_id}</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="table.html" class="btn btn-neutral float-left" title="table module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, UAM.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -200,13 +200,13 @@ def csv_to_db(survey: database.Survey, filename: str, defaults: Dict = {}):
         df = raw_to_compact(survey, df, defaults)
 
         # if defaults is not empty, there exists an XML to which the data must be adjusted
-        if defaults:
-            lacking, extra = get_column_mismatches(survey, df)
-            if lacking or extra:
-                err = error.API('the data is incompatible with survey schema')
-                err.data['lacking'] = lacking
-                err.data['extra'] = extra
-                raise err
+        # if defaults:
+        #     lacking, extra = get_column_mismatches(survey, df)
+        #     if lacking or extra:
+        #         err = error.API('the data is incompatible with survey schema')
+        #         err.data['lacking'] = lacking
+        #         err.data['extra'] = extra
+        #         raise err
 
         conn = database.open_survey(survey)
         df.to_sql("data", conn, if_exists="replace")
@@ -304,7 +304,6 @@ def json_to_xml(survey: database.Survey, survey_json):
 
     with open(f'survey/{survey.id}.xml', "w+", encoding='utf-8') as xml_out:
         print('<?xml version="1.0" encoding="UTF-8"?>\n<questionnaire xsi:noNamespaceSchemaLocation="questionnaire.xsd"\nxmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n',file=xml_out)
-        print(f"<title><![CDATA[{survey_json['title']}]]></title>\n",file=xml_out)
         for elem in survey_json["elements"]:
             el=elem
             type=el["questionType"]
@@ -405,10 +404,9 @@ def xml_to_json(survey: database.Survey):
 
     xml = ET.parse(f"survey/{survey.id}.xml")
     questions = ["page","text","information","groupedsingle","single","multi"]
+    json_out["title"]=survey.Name
     for child in xml.getroot():
         result={}
-        if child.tag=="title":
-            json_out["title"]=child.text
         if child.tag in questions:
             if child.tag == "page":
                 result["header"] = ""
