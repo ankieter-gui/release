@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="pl" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pobranie nowej wersji &mdash; Ankieter+  documentation</title>
+  <title>Pobranie nowej wersji &mdash; Ankieter+  - dokumentacja</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,9 +15,10 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="index" title="Indeks" href="../genindex.html" />
+    <link rel="search" title="Szukaj" href="../search.html" />
     <link rel="next" title="Wstęp" href="dla_programisty.html" />
     <link rel="prev" title="Opis interfejsu" href="dla_u%C5%BCytkownika.html" /> 
 </head>
@@ -31,13 +32,13 @@
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Szukaj" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Spis treści:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../modules.html">Wstęp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules.html#dla-uzytkownika">Dla użytkownika</a></li>
@@ -72,7 +73,7 @@
           <li><a href="../modules.html">Wstęp</a> &raquo;</li>
       <li>Pobranie nowej wersji</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/md/dla_administratora.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/md/dla_administratora.md.txt" rel="nofollow"> Zobacz źródło strony</a>
       </li>
   </ul>
   <hr/>
@@ -81,7 +82,7 @@
            <div itemprop="articleBody">
              
   <section class="tex2jax_ignore mathjax_ignore" id="pobranie-nowej-wersji">
-<h1>Pobranie nowej wersji<a class="headerlink" href="#pobranie-nowej-wersji" title="Permalink to this headline"></a></h1>
+<h1>Pobranie nowej wersji<a class="headerlink" href="#pobranie-nowej-wersji" title="Stały odnośnik do tego nagłówka"></a></h1>
 <p>Kod ankietera znajduje się w repozytoriach pod <a class="reference external" href="https://github.com/ankieter-gui">tym adresem</a>.</p>
 <p>Repozytoria te, zawierające frontend, backend oraz dokumentację złożone w jedną strukturę folderów gotową do uruchomienia jako aplikacja, znajdują się w repozytorium <a class="reference external" href="https://github.com/ankieter-gui/release">release</a>.</p>
 <p>Aby wykorzystać najnowsze repozytoria źródłowe, należy uruchomić znajdujący się w tym repozytorium skrypt:</p>
@@ -90,8 +91,8 @@
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="instalacja">
-<h1>Instalacja<a class="headerlink" href="#instalacja" title="Permalink to this headline"></a></h1>
-<p>Strona serwerowa Ankieter+ do poprawnego działania wymaga języka Python w wersji 3.8. Wymagane są także dodatkowe biblioteki języka Python zawarte w pliku “requirements”. W celu zainstalowania tych bibliotek należy w wierszu poleceń, będąc w folderze backend/ wykonać polecenie:</p>
+<h1>Instalacja<a class="headerlink" href="#instalacja" title="Stały odnośnik do tego nagłówka"></a></h1>
+<p>Strona serwerowa Ankieter+ do poprawnego działania wymaga języka Python w wersji 3.8. Wymagane są także dodatkowe biblioteki języka Python zawarte w pliku „requirements”. W celu zainstalowania tych bibliotek należy w wierszu poleceń, będąc w folderze backend/ wykonać polecenie:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python3 -m pip install -r requirements.txt
 </pre></div>
 </div>
@@ -114,7 +115,7 @@
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="konfiguracja">
-<h1>Konfiguracja<a class="headerlink" href="#konfiguracja" title="Permalink to this headline"></a></h1>
+<h1>Konfiguracja<a class="headerlink" href="#konfiguracja" title="Stały odnośnik do tego nagłówka"></a></h1>
 <p>Plik <code class="docutils literal notranslate"><span class="pre">config.py</span></code> tworzony jest przez skrypt <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, jednak jego parametry można modyfikować jeszcze po instalacji. Wymaganymi parametrami są:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CAS_URL</span></code> (str) - adres interfejsu sieciowego wykorzystywanego systemu CAS,</p></li>
@@ -133,24 +134,24 @@
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="logika-uprawnien">
-<h1>Logika uprawnień<a class="headerlink" href="#logika-uprawnien" title="Permalink to this headline"></a></h1>
+<h1>Logika uprawnień<a class="headerlink" href="#logika-uprawnien" title="Stały odnośnik do tego nagłówka"></a></h1>
 <section id="uzytkownicy">
-<h2>Użytkownicy<a class="headerlink" href="#uzytkownicy" title="Permalink to this headline"></a></h2>
+<h2>Użytkownicy<a class="headerlink" href="#uzytkownicy" title="Stały odnośnik do tego nagłówka"></a></h2>
 <p>Każdy użytkownik systemu Ankieter+ ma przypisany jedną z następujących ról:</p>
 <ul class="simple">
-<li><p>“s”: <em>superuser</em> - użytkownik z uprawnieniami administratora, ma on wgląd we wszystkie ankiety i raporty utworzone w systemie oraz dostęp do panelu zarządzania użytkownikami i grupami.</p></li>
-<li><p>“u”: <em>user</em> - zwykły użytkownik, mogący tworzyć, udostępniać i oglądać/edytować udostępnione mu ankiety.</p></li>
-<li><p>“g”: <em>guest</em> - każdy niezalogowany/niedodany do systemu użytkownik, ma wgląd tylko w raporty udostępnione publicznie lub przez link.</p></li>
+<li><p>„s”: <em>superuser</em> - użytkownik z uprawnieniami administratora, ma on wgląd we wszystkie ankiety i raporty utworzone w systemie oraz dostęp do panelu zarządzania użytkownikami i grupami.</p></li>
+<li><p>„u”: <em>user</em> - zwykły użytkownik, mogący tworzyć, udostępniać i oglądać/edytować udostępnione mu ankiety.</p></li>
+<li><p>„g”: <em>guest</em> - każdy niezalogowany/niedodany do systemu użytkownik, ma wgląd tylko w raporty udostępnione publicznie lub przez link.</p></li>
 </ul>
 </section>
 <section id="raporty-oraz-ankiety">
-<h2>Raporty oraz ankiety<a class="headerlink" href="#raporty-oraz-ankiety" title="Permalink to this headline"></a></h2>
+<h2>Raporty oraz ankiety<a class="headerlink" href="#raporty-oraz-ankiety" title="Stały odnośnik do tego nagłówka"></a></h2>
 <p>Każdy użytkownik może mieć nadane jedno z następujących rodzajów uprawnień do każdej/każdego z ankiet/raportów w systemie:</p>
 <ul class="simple">
-<li><p>“o”: <em>own</em> - właściciel ankiety/raportu, posiada prawa do odczytu, edycji, kopiowania, udostępniania oraz usuwania danego obiektu.</p></li>
-<li><p>“w”: <em>write</em> - edycja, pozwala na podgląd, edycje oraz kopiowanie raportów</p></li>
-<li><p>“r”: <em>read</em> - odczyt, zezwala jedynie na podgląd gotowych raportów</p></li>
-<li><p>“n”: <em>none</em> - oznacza brak jakichkolwiek uprawnień. W bazie danych nie istnieje jawna reprezentacja tego uprawnienia, ponieważ polega ono na braku innych uprawnień.</p></li>
+<li><p>„o”: <em>own</em> - właściciel ankiety/raportu, posiada prawa do odczytu, edycji, kopiowania, udostępniania oraz usuwania danego obiektu.</p></li>
+<li><p>„w”: <em>write</em> - edycja, pozwala na podgląd, edycje oraz kopiowanie raportów</p></li>
+<li><p>„r”: <em>read</em> - odczyt, zezwala jedynie na podgląd gotowych raportów</p></li>
+<li><p>„n”: <em>none</em> - oznacza brak jakichkolwiek uprawnień. W bazie danych nie istnieje jawna reprezentacja tego uprawnienia, ponieważ polega ono na braku innych uprawnień.</p></li>
 </ul>
 </section>
 </section>
@@ -159,8 +160,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="dla_u%C5%BCytkownika.html" class="btn btn-neutral float-left" title="Opis interfejsu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="dla_programisty.html" class="btn btn-neutral float-right" title="Wstęp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="dla_u%C5%BCytkownika.html" class="btn btn-neutral float-left" title="Opis interfejsu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Poprzedni</a>
+        <a href="dla_programisty.html" class="btn btn-neutral float-right" title="Wstęp" accesskey="n" rel="next">Następny <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -169,9 +170,9 @@
     <p>&#169; Copyright 2021, UAM.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  Zbudowano w <a href="https://www.sphinx-doc.org/">Sphinx</a> używając
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    dostarczone przez <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

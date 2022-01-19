@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="pl" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>convert module &mdash; Ankieter+  documentation</title>
+  <title>convert module &mdash; Ankieter+  - dokumentacja</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,9 +15,10 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Indeks" href="genindex.html" />
+    <link rel="search" title="Szukaj" href="search.html" />
     <link rel="next" title="database module" href="database.html" />
     <link rel="prev" title="Wstęp" href="md/dla_programisty.html" /> 
 </head>
@@ -31,20 +32,20 @@
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Szukaj" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Spis treści:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Wstęp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-uzytkownika">Dla użytkownika</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-administratora">Dla administratora</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html#dla-programisty">Dla programisty</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html">Wstęp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html#jak-dodac-nowy-wykres">Jak dodać nowy wykres?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html#jak-dodac-nowy-rodzaj-wykresu">Jak dodać nowy rodzaj wykresu?</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">convert module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="error.html">error module</a></li>
@@ -73,7 +74,7 @@
           <li><a href="modules.html">Wstęp</a> &raquo;</li>
       <li>convert module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/convert.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/convert.rst.txt" rel="nofollow"> Zobacz źródło strony</a>
       </li>
   </ul>
   <hr/>
@@ -82,16 +83,16 @@
            <div itemprop="articleBody">
              
   <section id="module-convert">
-<span id="convert-module"></span><h1>convert module<a class="headerlink" href="#module-convert" title="Permalink to this headline"></a></h1>
+<span id="convert-module"></span><h1>convert module<a class="headerlink" href="#module-convert" title="Stały odnośnik do tego nagłówka"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.antimode">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">antimode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.series.Series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.antimode" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">antimode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.series.Series</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.antimode" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Return one of the rarest of the values in a series.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><p><strong>vals</strong> (<em>pandas.Series</em>) – The series</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>One of the rarest values</p>
 </dd>
 </dl>
@@ -99,10 +100,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.csv_to_db">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">csv_to_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.csv_to_db" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">csv_to_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.csv_to_db" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Read the source CSV file and save it to a new database</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey</p></li>
 <li><p><strong>filename</strong> (<em>str</em>) – Name of the source CSV file in the raw/ directory</p></li>
@@ -114,10 +115,10 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.db_to_csv">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">db_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.db_to_csv" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">db_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.db_to_csv" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Convert db data to csv and write csv file into temp directory</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey</p>
 </dd>
 </dl>
@@ -125,16 +126,16 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.detect_csv_sep">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">detect_csv_sep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#convert.detect_csv_sep" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">detect_csv_sep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#convert.detect_csv_sep" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Detect the separator used in a raw source CSV file.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – The name of the raw CSV in the raw/ directory</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>The separator string</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>str</p>
 </dd>
 </dl>
@@ -142,20 +143,20 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.get_column_mismatches">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">get_column_mismatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#convert.get_column_mismatches" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">get_column_mismatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#convert.get_column_mismatches" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Check which columns in the schema are not present in the data, and also
 which columns in the data are not present in the schema.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>database.Survey</em></a>) – Survey object for which the data was gathered</p></li>
 <li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the compacted data</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>A pair of lists of columns that the data lacks, and the extra ones</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
@@ -163,16 +164,16 @@ which columns in the data are not present in the schema.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.get_default_values">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">get_default_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#convert.get_default_values" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">get_default_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#convert.get_default_values" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Get default value string for every question in the survey database</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>database.Survey</em></a>) – The survey</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>A dict from question names to a set of its defaults</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
@@ -180,10 +181,10 @@ which columns in the data are not present in the schema.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.json_to_xml">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">json_to_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">survey_json</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.json_to_xml" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">json_to_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">survey_json</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.json_to_xml" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Convert survey from JSON format to Ankieter xml format.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey that is edited or created</p></li>
 <li><p><strong>survey_json</strong> (<em>Dict</em>) – Survey JSON to be converted</p></li>
@@ -194,7 +195,7 @@ which columns in the data are not present in the schema.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.nodefaults">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">nodefaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.nodefaults" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">nodefaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.nodefaults" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Creates a pandas row aggregator that skips default column values and
 leaves a value from the first column with a non-default. It’s used when
 a few columns represent the same variable, in that case the value chosen
@@ -202,16 +203,16 @@ by the user is saved in one column, and the others contain defaults.
 Such a group of columns can be joined into one columns with a use of
 aggregator functions returned by this function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>defaults</strong> (<em>Dict</em>) – Default column values as returned from get_default_values</p></li>
 <li><p><strong>name</strong> (<em>str</em>) – A name of the group of columns column to be aggregated</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>A pandas row aggregator</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>function</p>
 </dd>
 </dl>
@@ -219,22 +220,22 @@ aggregator functions returned by this function.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.raw_to_compact">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">raw_to_compact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#convert.raw_to_compact" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">raw_to_compact</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">pandas.core.frame.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaults</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#convert.raw_to_compact" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Convert a raw Ankieter DataFrame into a compact format suitable for
 data analysis. The change is mainly about joining separate columns that
 in fact represent the same question.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>database.Survey</em></a>) – Survey object for which the data was gathered</p></li>
 <li><p><strong>df</strong> (<em>pandas.DataFrame</em>) – DataFrame containing the raw data</p></li>
 <li><p><strong>defaults</strong> (<em>Dict</em>) – A dict with default values set for each column name</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>The compacted data</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>pandas.DataFrame</p>
 </dd>
 </dl>
@@ -242,16 +243,16 @@ in fact represent the same question.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="convert.xml_to_json">
-<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">xml_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.xml_to_json" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">convert.</span></span><span class="sig-name descname"><span class="pre">xml_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">survey</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="database.html#database.Survey" title="database.Survey"><span class="pre">database.Survey</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#convert.xml_to_json" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Convert survey from Ankieter xml format to json format</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parametry</dt>
 <dd class="field-odd"><p><strong>survey</strong> (<a class="reference internal" href="database.html#database.Survey" title="database.Survey"><em>Survey</em></a>) – The Survey that is edited or created</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Zwraca</dt>
 <dd class="field-even"><p>The survey in json format</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Typ zwracany</dt>
 <dd class="field-odd"><p>Dict</p>
 </dd>
 </dl>
@@ -263,8 +264,8 @@ in fact represent the same question.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="md/dla_programisty.html" class="btn btn-neutral float-left" title="Wstęp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="database.html" class="btn btn-neutral float-right" title="database module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="md/dla_programisty.html" class="btn btn-neutral float-left" title="Wstęp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Poprzedni</a>
+        <a href="database.html" class="btn btn-neutral float-right" title="database module" accesskey="n" rel="next">Następny <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -273,9 +274,9 @@ in fact represent the same question.</p>
     <p>&#169; Copyright 2021, UAM.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  Zbudowano w <a href="https://www.sphinx-doc.org/">Sphinx</a> używając
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    dostarczone przez <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>

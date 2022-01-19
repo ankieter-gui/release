@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="pl" >
 <head>
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>grammar module &mdash; Ankieter+  documentation</title>
+  <title>grammar module &mdash; Ankieter+  - dokumentacja</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -15,9 +15,10 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Indeks" href="genindex.html" />
+    <link rel="search" title="Szukaj" href="search.html" />
     <link rel="next" title="setup module" href="setup.html" />
     <link rel="prev" title="error module" href="error.html" /> 
 </head>
@@ -31,20 +32,20 @@
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Szukaj" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Spis treści:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Wstęp</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-uzytkownika">Dla użytkownika</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html#dla-administratora">Dla administratora</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html#dla-programisty">Dla programisty</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html">Wstęp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html#jak-dodac-nowy-wykres">Jak dodać nowy wykres?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="md/dla_programisty.html#jak-dodac-nowy-rodzaj-wykresu">Jak dodać nowy rodzaj wykresu?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="convert.html">convert module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="database.html">database module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="error.html">error module</a></li>
@@ -73,7 +74,7 @@
           <li><a href="modules.html">Wstęp</a> &raquo;</li>
       <li>grammar module</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/grammar.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/grammar.rst.txt" rel="nofollow"> Zobacz źródło strony</a>
       </li>
   </ul>
   <hr/>
@@ -82,10 +83,10 @@
            <div itemprop="articleBody">
              
   <section id="module-grammar">
-<span id="grammar-module"></span><h1>grammar module<a class="headerlink" href="#module-grammar" title="Permalink to this headline"></a></h1>
+<span id="grammar-module"></span><h1>grammar module<a class="headerlink" href="#module-grammar" title="Stały odnośnik do tego nagłówka"></a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="grammar.analyze">
-<span class="sig-prename descclassname"><span class="pre">grammar.</span></span><span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#grammar.analyze" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">grammar.</span></span><span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#grammar.analyze" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Analyze object structure.</p>
 <p>Keyword arguments:
 tp – expected object structure
@@ -96,7 +97,7 @@ returns message after analyze</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="grammar.check">
-<span class="sig-prename descclassname"><span class="pre">grammar.</span></span><span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grammar.check" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">grammar.</span></span><span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tp</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#grammar.check" title="Stały odnośnik do tej definicji"></a></dt>
 <dd><p>Validate object structure.</p>
 <p>Keyword arguments:
 tp – expected object structure
@@ -109,8 +110,8 @@ obj – given object</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="error.html" class="btn btn-neutral float-left" title="error module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="setup.html" class="btn btn-neutral float-right" title="setup module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="error.html" class="btn btn-neutral float-left" title="error module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Poprzedni</a>
+        <a href="setup.html" class="btn btn-neutral float-right" title="setup module" accesskey="n" rel="next">Następny <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -119,9 +120,9 @@ obj – given object</p>
     <p>&#169; Copyright 2021, UAM.</p>
   </div>
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  Zbudowano w <a href="https://www.sphinx-doc.org/">Sphinx</a> używając
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+    dostarczone przez <a href="https://readthedocs.org">Read the Docs</a>.
    
 
 </footer>
