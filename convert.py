@@ -83,6 +83,7 @@ def get_default_values(survey: database.Survey) -> Dict:
     return result
 
 
+# DEBUG: this function is too strict for practical use or it has a bug
 def get_column_mismatches(survey: database.Survey, df: pandas.DataFrame) -> tuple:
     """Check which columns in the schema are not present in the data, and also
     which columns in the data are not present in the schema.
@@ -191,10 +192,10 @@ def csv_to_db(survey: database.Survey, filename: str, defaults: Dict = {}):
         name, ext = filename.rsplit('.', 1)
         if ext != "csv":
             file = pandas.read_excel(f'raw/{name}.{ext}')
-            file.to_csv(f'raw/{name}.csv',encoding='utf-8')
+            file.to_csv(f'raw/{name}.csv', encoding='utf-8')
             filename = f'{name}.csv'
         separator = detect_csv_sep(filename)
-        df = pandas.read_csv(f"raw/{filename}", sep=separator)
+        df = pandas.read_csv(f"raw/{filename}", sep=separator, encoding='utf-8')
 
         # convert the data to a format suitable for data analysis
         df = raw_to_compact(survey, df, defaults)
@@ -239,16 +240,15 @@ def db_to_csv(survey: database.Survey):
         raise error.API(str(e) + ' while parsing db to csv')
 
 
-
 def json_to_xml(survey: database.Survey, survey_json):
     """Convert survey from JSON format to Ankieter xml format.
 
     :param survey: The Survey that is edited or created
-    :type survey: Survey 
+    :type survey: Survey
     :param survey_json: Survey JSON to be converted
     :type survey_json: Dict
     """
-    
+
     def write_condition(condition,i):
         c=""
         if i>len(condition):
@@ -312,7 +312,7 @@ def json_to_xml(survey: database.Survey, survey_json):
                 print(f'<page id="{elem["id"]}">',file=xml_out)
                 print(f'<header><![CDATA[{elem["header"]}]]></header>',file=xml_out)
                 if "condition" in elem:
-                    print(elem["condition"]) 
+                    print(elem["condition"])
                     cond=write_condition(elem["condition"],1)
                     print(f'  <filter>\n{cond}\n  </filter>',file=xml_out)
                 print(' <questions>',file=xml_out)
@@ -326,16 +326,15 @@ def json_to_xml(survey: database.Survey, survey_json):
         print('</questionnaire>',file=xml_out)
 
 
-
 def xml_to_json(survey: database.Survey):
     """Convert survey from Ankieter xml format to json format
 
     :param survey: The Survey that is edited or created
-    :type survey: Survey 
+    :type survey: Survey
     :return: The survey in json format
     :rtype: Dict
     """
-    
+
     def write_element(question, res):
         res["header"] = question.find("header").text
         res["id"] = question.get("id","")
