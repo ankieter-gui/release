@@ -78,7 +78,7 @@ cd $BASE
 # Build frontend
 cd interface
 npm install
-ng build --configuration production
+ng build --configuration production --optimization=false
 cd $BASE
 
 mkdir static
